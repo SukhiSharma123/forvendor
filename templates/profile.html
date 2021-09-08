@@ -1,0 +1,23 @@
+{% load static %}
+
+{% block content %}
+
+        <div class="col-md-5" style="margin-left: 10px;">
+            <!-- <br> -->
+            {% for pi in posts %}
+            {% ifequal pi.username request.user.username %}
+                <p>Username : {{pi.username}}</p>
+                <p>Address : {{pi.address}}</p>
+                <p>Pan Number : {{pi.pan}}</p>
+                <p>Kardarta's Name : {{pi.kardartaname}}</p>
+                <p>Year : {{pi.year}}</p>
+                <p>Duration : {{pi.duration}}</p>
+            <a href="{% url 'proapp:changepass' %}">Change Password</a>
+            
+            {% else %}
+
+            {% endifequal %}
+        </div>
+ 
+{% endfor %}
+{% endblock %}

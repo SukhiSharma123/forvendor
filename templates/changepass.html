@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+
+   <div class="col-9">
+
+    <form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">change password</button>
+  </form>
+</div>
+<!-- </div> -->
+{% endblock %}
