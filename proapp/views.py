@@ -158,104 +158,7 @@ def update(request):
     student.save()
     return JsonResponse({"success":"Updated"})
 
-# class DetailCreateView(LoginRequiredMixin, CreateView):
-# 	template_name = "detailcreate.html"
-# 	model = Details
-# 	form_class = DetailCreateForm
-
-# 	def form_valid(self, form):
-# 		print("hello")
-# 		# messages.success(self.request, 'form is valid')
-# 		if self.request.method == "POST":
-# 			print(self.request.user)
-# 			dateof=form.cleaned_data['dateof']
-# 			print(dateof)
-# 			bijan = form.cleaned_data['bijan']
-# 			print(bijan)
-# 			kharidname = form.cleaned_data['kharidname']
-# 			print(kharidname)
-# 			kharidlekha = form.cleaned_data['kharidlekha']
-# 			print(kharidlekha)
-# 			sewaname = form.cleaned_data['sewaname']
-# 			print(sewaname)
-# 			totalsell = form.cleaned_data['totalsell']
-# 			print(totalsell)
-# 			totalsell += totalsell
-# 			print(totalsell)
-# 			sthaniyakar = form.cleaned_data['sthaniyakar']
-# 			print(sthaniyakar)
-# 			sthaniyakar += sthaniyakar
-# 			print(sthaniyakar)
-# 			price = form.cleaned_data['price']
-# 			print(price)
-# 			tax = form.cleaned_data['tax']
-# 			print(tax)
-# 			sewaprice = (price*tax)/100
-# 			sewaprice += sewaprice
-# 			print(sewaprice)
-# 			country = form.cleaned_data['country']
-# 			print(country)
-# 			nikasipatra = form.cleaned_data['nikasipatra']
-# 			print(nikasipatra)
-# 			nikasidate = form.cleaned_data['nikasidate']
-# 			print(nikasidate)
-# 			form.instance.author = self.request.user
-		
-# 			form.save()
-# 		return redirect(self.get_success_url())
-
-# 	def get_success_url(self):
-# 		return reverse('proapp:home')
-
-# class DetailCreateView(LoginRequiredMixin, CreateView):
-# 	template_name = "detailcreate.html"
-# 	model = Details
-# 	form_class = DetailCreateForm
-# 	def form_valid(self, form):
-# 		print("kjsga")
-# 		# messages.success(self.request, 'form is valid')
-# 		if self.request.method == "POST":
-# 			print(self.request.user)
-# 			dateof=form.cleaned_data['dateof']
-# 			print(dateof)
-# 			bijan = form.cleaned_data['bijan']
-# 			print(bijan)
-# 			kharidname = form.cleaned_data['kharidname']
-# 			print(kharidname)
-# 			kharidlekha = form.cleaned_data['kharidlekha']
-# 			print(kharidlekha)
-# 			sewaname = form.cleaned_data['sewaname']
-# 			print(sewaname)
-# 			totalsell = form.cleaned_data['totalsell']
-# 			print(totalsell)
-# 			totalsell += totalsell
-# 			print(totalsell)
-# 			sthaniyakar = form.cleaned_data['sthaniyakar']
-# 			print(sthaniyakar)
-# 			sthaniyakar += sthaniyakar
-# 			print(sthaniyakar)
-# 			price = form.cleaned_data['price']
-# 			print(price)
-# 			tax = form.cleaned_data['tax']
-# 			print(tax)
-# 			sewaprice = (price*tax)/100
-# 			sewaprice += sewaprice
-# 			print(sewaprice)
-# 			country = form.cleaned_data['country']
-# 			print(country)
-# 			nikasipatra = form.cleaned_data['nikasipatra']
-# 			print(nikasipatra)
-# 			nikasidate = form.cleaned_data['nikasidate']
-# 			print(nikasidate)
-# 			form.instance.author = self.request.user
-		
-# 			form.save()
-# 		return redirect(self.get_success_url())
-
-# 	def get_success_url(self):
-# 		return reverse('proapp:home')
-
-		
+	
 
 class ProfileView(TemplateView):
 	template_name = "profile.html"
@@ -348,5 +251,5 @@ def remove(request, id):
 	if request.method=="POST":
 		pi = Details.objects.filter(id=id)
 		pi.delete()
-		return HttpResponseRedirect('/showdata/')
+		return HttpResponseRedirect('/detailcreate/')
 # Create your views here.

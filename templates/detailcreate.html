@@ -28,9 +28,19 @@ border:1px solid dodgerblue;
   
   <div class="card-body">
     <div id="table" class="table-editable">
-<div class="collapse" id="collapseExample">
-  <div class="card card-body">
-      <table class="table table-bordered table-responsive-ls table-striped text-center">
+<!--  -->
+<!-- <div class="container"> -->
+
+<!-- Editable table -->
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
+    Editable table
+  </h3>
+  
+  <div class="card-body">
+    <div id="table" class="table-editable">
+     
+      <table class="table table-bordered table-responsive-md table-striped text-center">
         <thead>
           <tr>
             <th class="text-center">Date Of</th>
@@ -42,23 +52,58 @@ border:1px solid dodgerblue;
             <th class="text-center">Sthaniyakar</th>
             <th class="text-center">Price</th>
             <th class="text-center">Tax</th>
+            <th class="text-center">Sewa Price</th>
             <th class="text-center">Country</th>
             <th class="text-center">Nikasi Patra</th>
             <th class="text-center">Nikasi Date</th>
-            <th class="text-center">Action</th>
             
           </tr>
         </thead>
         <tbody>
+                
 
-      <div class="container">
-      <section class="signup">
+            {% for student in students %}
+          <tr>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="dateof">{{ student.dateof }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="bijan">{{ student.bijan }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="kharidname">{{ student.kharidname }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="kharidlekha">{{ student.kharidlekha }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="sewaname">{{ student.sewaname }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="totalsell">{{ student.totalsell }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="sthaniyakar">{{ student.sthaniyakar }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="price">{{ student.price }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="tax">{{ student.tax }}</td>
+            <td class="">{{ student.sewaprice }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="country">{{ student.country }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="nikasipatra">{{ student.nikasipatra }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="nikasidate">{{ student.nikasidate }}</td>
+       
+            <td class="d-inline">
+              <p class="d-inline">
+              <button onClick="window.location.reload();" class="btn btn-info">Save</button>
+                <form action="{% url 'proapp:remove' student.id %}" method="POST">
+                    {% csrf_token %}
+                 <input type="submit" name="Remove" value="Remove" class="btn btn-danger">   
+                
+              </form>
+            </p>
+            </td>
+          </tr>
+          <!-- This is our clonable table line -->
+        
+          <!-- This is our clonable table line -->
+         
+          <!-- This is our clonable table line -->
+         
+  {% endfor %}
+
+<section class="signup">
         <!-- <img src="images/signup-bg.jpg" alt=""> -->
         <div class="container">
           <div class="signup-content">
             <form method="POST">
               {% csrf_token %}
-              <h2 class="form-title">Add Detail</h2>
+             
               <div class="form-group">
                 <div>
                   {% for message in messages %}
@@ -83,10 +128,11 @@ border:1px solid dodgerblue;
             <td><input type="text"class="form-input"name="sthaniyakar" style="width: 100%;" id="sthaniyakar"placeholder="@sthaniyakar"required/></td>
             <td><input type="text"class="form-input"name="price" style="width: 100%;" id="price"placeholder="@price"required/></td>
             <td><input type="text"class="form-input"name="tax" style="width: 100%;" id="tax"placeholder="@tax"required/></td>
+            <td></td>
             <td><input type="text"class="form-input"name="country" style="width: 100%;" id="country"placeholder="@country"required/></td>
             <td><input type="text"class="form-input"name="nikasipatra" style="width: 100%;" id="nikasipatra"placeholder="@nikasipatra"required/></td>
             <td><input type="text"class="form-input"name="nikasidate" style="width: 100%;" id="nikasidate"placeholder="@nikasidate"required/></td>
-            <td><input type="submit"class="form-submit"name="submit" style="width: 100%;" id="submit"value="Save"/></td>
+            <td><input type="submit"class="form-submit btn btn-primary"name="submit" style="width: 100%;" id="submit"value="ADD"/></td>
             
            
           </tr>
@@ -97,88 +143,7 @@ border:1px solid dodgerblue;
           </div>
         </div>
       </section>
-    </div>
-</tbody>
-</table>
-
-</div>
-</div>
-<!-- <div class="container"> -->
-
-<!-- Editable table -->
-<div class="card">
-  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
-    Editable table
-  </h3>
   
-  <div class="card-body">
-    <div id="table" class="table-editable">
-      <span class="table-add float-right mb-3 mr-2"
-        >
-        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-        <i class="fa fa-plus fa-2x" aria-hidden="true"></i></a
-      ></span>
-      <table class="table table-bordered table-responsive-md table-striped text-center">
-        <thead>
-          <tr>
-            <th class="text-center">Date Of</th>
-            <th class="text-center">Bijan</th>
-            <th class="text-center">Kharid Name</th>
-            <th class="text-center">Kharid Lekha</th>
-            <th class="text-center">Sewa Name</th>
-            <th class="text-center">Total Sell</th>
-            <th class="text-center">Sthaniyakar</th>
-            <th class="text-center">Price</th>
-            <th class="text-center">Tax</th>
-            <th class="text-center">Sewa Price</th>
-            <th class="text-center">Country</th>
-            <th class="text-center">Nikasi Patra</th>
-            <th class="text-center">Nikasi Date</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-            {% for student in students %}
-          <tr>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="dateof">{{ student.dateof }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="bijan">{{ student.bijan }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="kharidname">{{ student.kharidname }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="kharidlekha">{{ student.kharidlekha }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="sewaname">{{ student.sewaname }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="totalsell">{{ student.totalsell }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="sthaniyakar">{{ student.sthaniyakar }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="price">{{ student.price }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="tax">{{ student.tax }}</td>
-            <td class="">{{ student.sewaprice }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="country">{{ student.country }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="nikasipatra">{{ student.nikasipatra }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="nikasidate">{{ student.nikasidate }}</td>
-            
-            <td class="pt-3-half">
-              <span class="table-up"
-                ><a href="#!" class="indigo-text"
-                  ><i class="fas fa-long-arrow-alt-up" aria-hidden="true"></i></a
-              ></span>
-              <span class="table-down"
-                ><a href="#!" class="indigo-text"
-                  ><i class="fas fa-long-arrow-alt-down" aria-hidden="true"></i></a
-              ></span>
-            </td>
-            <td>
-                <form action="{% url 'proapp:remove' student.id %}" method="POST">
-                    {% csrf_token %}
-                 <input type="submit" name="Remove" value="Remove" class="btn btn-danger">   
-                
-              </form>
-            </td>
-          </tr>
-          <!-- This is our clonable table line -->
-        
-          <!-- This is our clonable table line -->
-         
-          <!-- This is our clonable table line -->
-         
-  {% endfor %}
   <tr>
             <th class="text-center">Total</th>
             <th class="text-center"></th>
