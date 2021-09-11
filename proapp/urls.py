@@ -19,4 +19,5 @@ urlpatterns =[
 	path('update/', views.update, name='update'),
 	path('showdata/', views.show_all_data, name='showdata'),
 	path('remove/<int:id>/', views.remove, name='remove'),
+	path('savecsv/', views.save_csv, name='savecsv'),
 ]

@@ -11,7 +11,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from django.http.response import JsonResponse
+from django.http.response import JsonResponse, HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate,login,logout
 from django.core.mail import send_mail
@@ -20,6 +20,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.forms import modelformset_factory
 from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Sum
+import csv
 
 class HomeView(TemplateView):
 	template_name = 'home.html'
@@ -252,4 +253,16 @@ def remove(request, id):
 		pi = Details.objects.filter(id=id)
 		pi.delete()
 		return HttpResponseRedirect('/detailcreate/')
+
+
+def save_csv(request):
+	response = HttpResponse(content_type='text/csv')
+	response['Content-Disposition'] = 'attachment; filename=record.csv'
+	writer = csv.writer(response)
+	record = Details.objects.filter(author=request.user)
+	writer.writerow(['dateof','bijan','kharidname','kharidlekha','sewaname','totalsell','sthaniyakar','price','tax','sewaprice','country','nikasipatra','nikasidate'])
+	for rec in record:
+		writer.writerow([rec.dateof, rec.bijan, rec.kharidname, rec.kharidlekha, rec.sewaname, rec.totalsell, rec.sthaniyakar, rec.price, rec.tax, rec.sewaprice, rec.country, rec.nikasipatra, rec.nikasidate])
+
+	return response
 # Create your views here.
