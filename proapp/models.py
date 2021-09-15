@@ -19,7 +19,7 @@ class Vendor(models.Model):
 
 
 class Details(models.Model):
-	dateof = models.CharField(max_length=20, null=True, blank=True)
+	dateof = models.CharField(max_length=20, unique=True)
 	bijan = models.CharField(max_length=30)
 	kharidname = models.CharField(max_length=200)
 	kharidlekha = models.CharField(max_length=30)

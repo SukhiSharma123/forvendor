@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Show Data
+Bikri Karta
 {% endblock title %}
 
 {% block custom_css %}
@@ -24,26 +24,19 @@ border:1px solid dodgerblue;
 
 {% if ven %}
 
-<div class="card">
-  
-  <div class="card-body">
-    <div id="table" class="table-editable">
-<!--  -->
-<!-- <div class="container"> -->
 
-<!-- Editable table -->
 <div class="card">
   <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
-    Editable table
+    Bikri Khata
   </h3>
-  
+  <button type="button" id="formButton" class="btn btn-primary" style="margin-left: 1300px;"><i class="fa fa-plus"></i></button>
   <div class="card-body">
     <div id="table" class="table-editable">
      
       <table class="table table-bordered table-responsive-md table-striped text-center">
         <thead>
           <tr>
-            <th class="text-center">Date Of</th>
+            <th class="text-center">Date Of<p>(Unique)</p></th>
             <th class="text-center">Bijan</th>
             <th class="text-center">Kharid Name</th>
             <th class="text-center">Kharid Lekha</th>
@@ -64,7 +57,8 @@ border:1px solid dodgerblue;
 
             {% for student in students %}
           <tr>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="dateof">{{ student.dateof }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="dateof">{{ student.dateof }}
+            </td>
             <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="bijan">{{ student.bijan }}</td>
             <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="kharidname">{{ student.kharidname }}</td>
             <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="kharidlekha">{{ student.kharidlekha }}</td>
@@ -97,52 +91,7 @@ border:1px solid dodgerblue;
          
   {% endfor %}
 
-<section class="signup">
-        <!-- <img src="images/signup-bg.jpg" alt=""> -->
-        <div class="container">
-          <div class="signup-content">
-            <form method="POST">
-              {% csrf_token %}
-             
-              <div class="form-group">
-                <div>
-                  {% for message in messages %}
-                  <h5 style="color: red">{{message}}</h5>
-                  {% endfor %}
-                </div>
-                <div>
-                  {% if error %}
-                  <h5 style="color: red">{{error}}</h5>
-                    {% endif %}
-                </div>
-              </div>
 
-              <tr>
-                
-            <td><input type="text"class="form-input"name="dateof" style="width: 100%;" id="dateof"placeholder="@dateof"required/></td>
-            <td><input type="text"class="form-input"name="bijan" style="width: 100%;" id="bijan"placeholder="@bijan"required/></td>
-            <td><input type="text"class="form-input"name="kharidname" style="width: 100%;" id="kharidname"placeholder="@kharidname"required/></td>
-            <td><input type="text"class="form-input"name="kharidlekha" style="width: 100%;" id="kharidlekha"placeholder="@kharidlekha"required/></td>
-            <td><input type="text"class="form-input"name="sewaname" style="width: 100%;" id="sewaname"placeholder="@sewaname"required/></td>
-            <td><input type="text"class="form-input"name="totalsell" style="width: 100%;" id="totalsell"placeholder="@totalsell"required/></td>
-            <td><input type="text"class="form-input"name="sthaniyakar" style="width: 100%;" id="sthaniyakar"placeholder="@sthaniyakar"required/></td>
-            <td><input type="text"class="form-input"name="price" style="width: 100%;" id="price"placeholder="@price"required/></td>
-            <td><input type="text"class="form-input"name="tax" style="width: 100%;" id="tax"placeholder="@tax"required/></td>
-            <td></td>
-            <td><input type="text"class="form-input"name="country" style="width: 100%;" id="country"placeholder="@country"required/></td>
-            <td><input type="text"class="form-input"name="nikasipatra" style="width: 100%;" id="nikasipatra"placeholder="@nikasipatra"required/></td>
-            <td><input type="text"class="form-input"name="nikasidate" style="width: 100%;" id="nikasidate"placeholder="@nikasidate"required/></td>
-            <td><input type="submit"class="form-submit btn btn-primary"name="submit" style="width: 100%;" id="submit"value="ADD"/></td>
-            
-           
-          </tr>
-
-            
-            </form>
-            
-          </div>
-        </div>
-      </section>
   
   <tr>
             <th class="text-center">Total</th>
@@ -169,6 +118,108 @@ border:1px solid dodgerblue;
   </div>
 </div>
 <!-- Editable table -->
+
+
+
+
+<div class="card" id="form1" style="display: none;">
+  
+  
+  <div class="card-body">
+    <div id="table" class="table-editable">
+     
+      <table class="table table-bordered table-responsive-md table-striped text-center">
+        <thead>
+          <tr>
+            <th class="text-center">Date Of<p>(Unique)</p></th>
+            <th class="text-center">Bijan</th>
+            <th class="text-center">Kharid Name</th>
+            <th class="text-center">Kharid Lekha</th>
+            <th class="text-center">Sewa Name</th>
+            <th class="text-center">Total Sell</th>
+            <th class="text-center">Sthaniyakar</th>
+            <th class="text-center">Price</th>
+            <th class="text-center">Tax</th>
+            <th class="text-center">Sewa Price</th>
+            <th class="text-center">Country</th>
+            <th class="text-center">Nikasi Patra</th>
+            <th class="text-center">Nikasi Date</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+
+
+<section class="signup">
+        <!-- <img src="images/signup-bg.jpg" alt=""> -->
+        <div class="container">
+          <div class="signup-content">
+            <form method="POST">
+              {% csrf_token %}
+             
+              <div class="form-group">
+                <div>
+                  {% for message in messages %}
+                  <h5 style="color: red">{{message}}</h5>
+                  {% endfor %}
+                </div>
+                <div>
+                  {% if error %}
+                  <h5 style="color: red">{{error}}</h5>
+                    {% endif %}
+                </div>
+              </div>
+
+              <tr>
+                
+            <td>
+                <select class="form-select" aria-label="Default select example" name="dateof" id="dateof">
+                    <option value="Baisakh">Baisakh</option>
+                    <option value="Jestha">Jestha</option>
+                    <option value="Asar">Asar</option>
+                    <option value="Shrawan">Shrawan</option>
+                    <option value="Bhadra">Bhadra</option>
+                    <option value="Asoj">Asoj</option>
+                    <option value="Kartik">Kartik</option>
+                    <option value="Mangsir">Mangsir</option>
+                    <option value="Poush">Poush</option>
+                    <option value="Magh">Magh</option>
+                    <option value="Falgun">Falgun</option>
+                    <option value="Chaitra">Chaitra</option>
+                </select>
+            </td>
+            <td><input type="text"class="form-input"name="bijan" style="width: 100%;" id="bijan"placeholder="@bijan"required/></td>
+            <td><input type="text"class="form-input"name="kharidname" style="width: 100%;" id="kharidname"placeholder="@kharidname"required/></td>
+            <td><input type="text"class="form-input"name="kharidlekha" style="width: 100%;" id="kharidlekha"placeholder="@kharidlekha"required/></td>
+            <td><input type="text"class="form-input"name="sewaname" style="width: 100%;" id="sewaname"placeholder="@sewaname"required/></td>
+            <td><input type="text"class="form-input"name="totalsell" style="width: 100%;" id="totalsell"placeholder="@totalsell"required/></td>
+            <td><input type="text"class="form-input"name="sthaniyakar" style="width: 100%;" id="sthaniyakar"placeholder="@sthaniyakar"required/></td>
+            <td><input type="text"class="form-input"name="price" style="width: 100%;" id="price"placeholder="@price"required/></td>
+            <td><input type="text"class="form-input"name="tax" style="width: 100%;" id="tax"placeholder="@tax"required/></td>
+            <td></td>
+            <td><input type="text"class="form-input"name="country" style="width: 100%;" id="country"placeholder="@country"required/></td>
+            <td><input type="text"class="form-input"name="nikasipatra" style="width: 100%;" id="nikasipatra"placeholder="@nikasipatra"required/></td>
+            <td><input type="text"class="form-input"name="nikasidate" style="width: 100%;" id="nikasidate"placeholder="@nikasidate"required/></td>
+            <td><input type="submit"class="form-submit btn btn-primary"name="submit" style="width: 100%;" id="submit"value="ADD"/></td>
+            
+           
+          </tr>
+
+            
+            </form>
+            
+          </div>
+        </div>
+      </section>
+
+         
+        </tbody>
+      </table>
+          
+        
+    </div>
+  </div>
+</div>
 
 
 

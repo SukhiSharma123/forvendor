@@ -56,6 +56,7 @@ class VendorCreateView(LoginRequiredMixin, CreateView):
 def profile(request):
     if request.method == 'POST':
         dateof = request.POST.get('dateof')
+        print(dateof)
         bijan = request.POST.get('bijan')
         kharidname = request.POST.get('kharidname')
         kharidlekha = request.POST.get('kharidlekha')
@@ -132,7 +133,6 @@ def update(request):
         price = student.price
         tax = student.tax
         sewaprice = (int(price)*int(tax))/100
-        print(sewaprice)
         student.sewaprice = sewaprice
 
 
@@ -141,7 +141,6 @@ def update(request):
         tax = student.tax
         price = student.price
         sewaprice = (int(price)*int(tax))/100
-        print(sewaprice)
         student.sewaprice = sewaprice
 
 
@@ -168,7 +167,6 @@ class ProfileView(TemplateView):
 		context = super().get_context_data(**kwargs) 
 		posts = Vendor.objects.all()
 		context['posts'] = posts
-		print(posts)
 		return context
 
 def registerPage(request):
@@ -260,6 +258,7 @@ def save_csv(request):
 	response['Content-Disposition'] = 'attachment; filename=record.csv'
 	writer = csv.writer(response)
 	record = Details.objects.filter(author=request.user)
+	writer.writerow(['Bikri Khata'])
 	writer.writerow(['dateof','bijan','kharidname','kharidlekha','sewaname','totalsell','sthaniyakar','price','tax','sewaprice','country','nikasipatra','nikasidate'])
 	for rec in record:
 		writer.writerow([rec.dateof, rec.bijan, rec.kharidname, rec.kharidlekha, rec.sewaname, rec.totalsell, rec.sthaniyakar, rec.price, rec.tax, rec.sewaprice, rec.country, rec.nikasipatra, rec.nikasidate])
