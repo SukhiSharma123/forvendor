@@ -426,7 +426,16 @@ def save_csv(request):
 class GeneratePdf(View):
      def get(self, request, *args, **kwargs):
      	context = Khariddata.objects.filter(owner=request.user)
-     	pdf = render_to_pdf('pdf_template.html', {'context': context})
+     	vendor = Vendor.objects.filter(username=request.user)
+     	totalsells = sum(context.values_list('totalbuyprice', flat=True))
+     	totalsthaniyakar = sum(context.values_list('pautharitotalprice', flat=True))
+     	totalprice = sum(context.values_list('buyprice', flat=True))
+     	taxbuyprice = sum(context.values_list('taxbuyprice', flat=True))
+     	pauthariprice = sum(context.values_list('pauthariprice', flat=True))
+     	pautharitaxprice = sum(context.values_list('pautharitaxprice', flat=True))
+     	pujigatprice = sum(context.values_list('pujigatprice', flat=True))
+     	pujigattaxprice = sum(context.values_list('pujigattaxprice', flat=True))
+     	pdf = render_to_pdf('pdf_template.html', {'context': context, 'ven':vendor, 'tsell':str(totalsells), 'tsthaniyakar':str(totalsthaniyakar), 'tprice':str(totalprice), 'tsewaprice':str(taxbuyprice), 'tpauthariprice':str(pauthariprice), 'tpautharitaxprice':str(pautharitaxprice), 'tpujigat':str(pujigatprice), 'tpujigattaxprice':str(pujigattaxprice)})
      	return HttpResponse(pdf, content_type='application/pdf')
 
 
