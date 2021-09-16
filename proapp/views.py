@@ -21,6 +21,19 @@ from django.forms import modelformset_factory
 from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Sum
 import csv
+import io
+import os
+from django.http import FileResponse
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
+
+from django.core.files.storage import FileSystemStorage
+from django.http import HttpResponse
+from django.template.loader import get_template
+ 
+#import render_to_pdf from util.py 
+from .utils import render_to_pdf
+
 
 class HomeView(TemplateView):
 	template_name = 'home.html'
@@ -395,10 +408,27 @@ def save_csv(request):
 	response['Content-Disposition'] = 'attachment; filename=record.csv'
 	writer = csv.writer(response)
 	record = Details.objects.filter(author=request.user)
-	writer.writerow(['Bikri Khata'])
+	infoma = Vendor.objects.filter(username=request.user)
+	writer.writerow(['','','','','','','Bikri Khata'])
+	for inf in infoma:
+		writer.writerow(['', '', 'Pan: ', inf.pan,'Kardarta Name: ',inf.kardartaname,'Year: ',inf.year,'Duration: ',inf.duration])
+
+	writer.writerow(['','','','Bijak','','','','|Karyogya Bikri','','|Nikasi','','',''])
 	writer.writerow(['dateof','bijan','kharidname','kharidlekha','sewaname','totalsell','sthaniyakar','price','tax','sewaprice','country','nikasipatra','nikasidate'])
 	for rec in record:
 		writer.writerow([rec.dateof, rec.bijan, rec.kharidname, rec.kharidlekha, rec.sewaname, rec.totalsell, rec.sthaniyakar, rec.price, rec.tax, rec.sewaprice, rec.country, rec.nikasipatra, rec.nikasidate])
 
 	return response
+
+
+
+
+class GeneratePdf(View):
+     def get(self, request, *args, **kwargs):
+     	context = Khariddata.objects.filter(owner=request.user)
+     	pdf = render_to_pdf('pdf_template.html', {'context': context})
+     	return HttpResponse(pdf, content_type='application/pdf')
+
+
+
 # Create your views here.
