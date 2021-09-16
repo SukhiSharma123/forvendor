@@ -90,6 +90,50 @@ def profile(request):
 
 
 
+
+def kharid(request):
+    if request.method == 'POST':
+        khariddate = request.POST.get('khariddate')
+        kharidbijan = request.POST.get('kharidbijan')
+        aapurtiname = request.POST.get('aapurtiname')
+        aapurtilekha = request.POST.get('aapurtilekha')
+        pauthariname = request.POST.get('pauthariname')
+        pauthariquantity =request.POST.get('pauthariquantity')
+        totalbuyprice = request.POST.get('totalbuyprice')
+        pautharitotalprice = request.POST.get('pautharitotalprice')
+        buyprice = request.POST.get('buyprice')
+        tax = request.POST.get('tax')
+        taxbuyprice = (int(buyprice)*int(tax))/100
+        pauthariprice = request.POST.get('pauthariprice')
+        pautharitax = request.POST.get('pautharitax')
+        pautharitaxprice = (int(pauthariprice)*int(pautharitax))/100
+        pujigatprice = request.POST.get('pujigatprice')
+        pujigattax = request.POST.get('pujigattax')
+        pujigattaxprice = (int(pujigatprice)*int(pujigattax))/100
+        # detail.instance.author = request.user
+        
+        detail = Khariddata(
+                    khariddate=khariddate, kharidbijan=kharidbijan, aapurtiname=aapurtiname, aapurtilekha=aapurtilekha, pauthariname=pauthariname, pauthariquantity=pauthariquantity, totalbuyprice=totalbuyprice, pautharitotalprice=pautharitotalprice, buyprice=buyprice, tax=tax, taxbuyprice=taxbuyprice, pauthariprice=pauthariprice, pautharitax=pautharitax, pautharitaxprice=pautharitaxprice, pujigatprice=pujigatprice, pujigattax=pujigattax, pujigattaxprice=pujigattaxprice, owner=request.user)
+        detail.save()
+        return HttpResponseRedirect('/kharidcreate/')
+      
+
+    else:
+    	student=Khariddata.objects.filter(owner=request.user)
+    	vendor = Vendor.objects.filter(username=request.user)
+    	totalsells = sum(student.values_list('totalbuyprice', flat=True))
+    	totalsthaniyakar = sum(student.values_list('pautharitotalprice', flat=True))
+    	totalprice = sum(student.values_list('buyprice', flat=True))
+    	taxbuyprice = sum(student.values_list('taxbuyprice', flat=True))
+    	pauthariprice = sum(student.values_list('pauthariprice', flat=True))
+    	pautharitaxprice = sum(student.values_list('pautharitaxprice', flat=True))
+    	pujigatprice = sum(student.values_list('pujigatprice', flat=True))
+    	pujigattaxprice = sum(student.values_list('pujigattaxprice', flat=True))
+
+    	return render(request,"showdata.html", {'students':student, 'ven':vendor, 'tsell':str(totalsells), 'tsthaniyakar':str(totalsthaniyakar), 'tprice':str(totalprice), 'tsewaprice':str(taxbuyprice), 'tpauthariprice':str(pauthariprice), 'tpautharitaxprice':str(pautharitaxprice), 'tpujigat':str(pujigatprice), 'tpujigattaxprice':str(pujigattaxprice)})
+
+
+
 def show_all_data(request):
     student=Details.objects.filter(author=request.user)
     vendor = Vendor.objects.filter(username=request.user)

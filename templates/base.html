@@ -32,7 +32,7 @@ body {font-family: "Lato", sans-serif}
     {% if request.user.is_authenticated %}
     <a href="{% url 'proapp:profile' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Profile</a>
     <a href="{% url 'proapp:detailcreate' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Bikri Khata</a>
-    <a href="" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Kharid Khata</a>
+    <a href="{% url 'proapp:kharidcreate' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Kharid Khata</a>
     {% endif %}
   
     {% if not request.user.is_authenticated %}

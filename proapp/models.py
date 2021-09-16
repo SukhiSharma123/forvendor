@@ -36,3 +36,28 @@ class Details(models.Model):
 
 	def __unicode__(self):
 		return str(self.id)
+
+
+class Khariddata(models.Model):
+	khariddate = models.CharField(max_length=20)
+	kharidbijan = models.CharField(max_length=20)
+	aapurtiname = models.CharField(max_length=200)
+	aapurtilekha = models.CharField(max_length=20)
+	pauthariname = models.CharField(max_length=200)
+	pauthariquantity = models.IntegerField()
+	totalbuyprice = models.IntegerField()
+	pautharitotalprice = models.IntegerField()
+	buyprice = models.IntegerField()
+	tax = models.IntegerField()
+	taxbuyprice = models.IntegerField()
+	pauthariprice = models.IntegerField()
+	pautharitax = models.IntegerField()
+	pautharitaxprice = models.IntegerField()
+	pujigatprice = models.IntegerField()
+	pujigattax = models.IntegerField()
+	pujigattaxprice = models.IntegerField()
+	owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="posts")
+
+
+	def __unicode__(self):
+		return str(self.id)

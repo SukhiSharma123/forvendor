@@ -16,6 +16,7 @@ urlpatterns =[
 	path('changepass/', views.changepPass, name='changepass'),
 	# path('detailcreate/', DetailCreateView.as_view(), name='detailcreate'),
 	path('detailcreate/', views.profile, name='detailcreate'),
+	path('kharidcreate/', views.kharid, name='kharidcreate'),
 	path('update/', views.update, name='update'),
 	path('showdata/', views.show_all_data, name='showdata'),
 	path('remove/<int:id>/', views.remove, name='remove'),

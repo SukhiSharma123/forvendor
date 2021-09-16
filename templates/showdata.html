@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Show Data Page
+Bikri Karta
 {% endblock title %}
 
 {% block custom_css %}
@@ -21,72 +21,74 @@ border:1px solid dodgerblue;
 {% endblock custom_css %}
 
 {% block bodydata %}
-<!-- <div class="container"> -->
+
 {% if ven %}
-<!-- Editable table -->
+
+
 <div class="card">
   <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
-    Bikri Khata
+    Kharid Khata
   </h3>
-  
+  <button type="button" id="formButton" class="btn btn-primary" style="margin-left: 1300px;"><i class="fa fa-plus"></i></button>
   <div class="card-body">
     <div id="table" class="table-editable">
-      <span class="table-add float-right mb-3 mr-2"
-        ><a href="" class="text-success"
-          ><i class="fa fa-plus fa-2x" aria-hidden="true"></i></a
-      ></span>
+     
       <table class="table table-bordered table-responsive-md table-striped text-center">
         <thead>
           <tr>
-            <th class="text-center">Date Of</th>
-            <th class="text-center">Bijan</th>
-            <th class="text-center">Kharid Name</th>
-            <th class="text-center">Kharid Lekha</th>
-            <th class="text-center">Sewa Name</th>
-            <th class="text-center">Total Sell</th>
-            <th class="text-center">Sthaniyakar</th>
-            <th class="text-center">Price</th>
+            <th class="text-center">Kharid Date<p>(Unique)</p></th>
+            <th class="text-center">Kharid Bijan</th>
+            <th class="text-center">Aapurti Name</th>
+            <th class="text-center">Aapurti Lekha</th>
+            <th class="text-center">Pauthari Name</th>
+            <th class="text-center">Pauthari Quantity</th>
+            <th class="text-center">Total Buy Price</th>
+            <th class="text-center">Pauthari Total Price</th>
+            <th class="text-center">Buy Price</th>
             <th class="text-center">Tax</th>
-            <th class="text-center">Sewa Price</th>
-            <th class="text-center">Country</th>
-            <th class="text-center">Nikasi Patra</th>
-            <th class="text-center">Nikasi Date</th>
+            <th class="text-center">Tax Buy Price</th>
+            <th class="text-center">Pauthari Price</th>
+            <th class="text-center">Pauthari Tax</th>
+            <th class="text-center">Pauthari Tax Price</th>
+            <th class="text-center">Pujigat Price</th>
+            <th class="text-center">Pujigat Tax</th>
+            <th class="text-center">Pujigat Tax Price</th>
             
           </tr>
         </thead>
         <tbody>
+                
+
             {% for student in students %}
           <tr>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="dateof">{{ student.dateof }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="bijan">{{ student.bijan }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="kharidname">{{ student.kharidname }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="kharidlekha">{{ student.kharidlekha }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="sewaname">{{ student.sewaname }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="totalsell">{{ student.totalsell }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="sthaniyakar">{{ student.sthaniyakar }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="price">{{ student.price }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="tax">{{ student.tax }}</td>
-            <td class="">{{ student.sewaprice }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="country">{{ student.country }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="nikasipatra">{{ student.nikasipatra }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="nikasidate">{{ student.nikasidate }}</td>
-            
-            <td class="pt-3-half">
-              <span class="table-up"
-                ><a href="#!" class="indigo-text"
-                  ><i class="fas fa-long-arrow-alt-up" aria-hidden="true"></i></a
-              ></span>
-              <span class="table-down"
-                ><a href="#!" class="indigo-text"
-                  ><i class="fas fa-long-arrow-alt-down" aria-hidden="true"></i></a
-              ></span>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="dateof">{{ student.khariddate }}
             </td>
-            <td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="bijan">{{ student.kharidbijan }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="kharidname">{{ student.aapurtiname }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="kharidlekha">{{ student.aapurtilekha }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="sewaname">{{ student.pauthariname }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="totalsell">{{ student.pauthariquantity }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="totalbuyprice">{{ student.totalbuyprice }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="pautharitotalprice">{{ student.pautharitotalprice }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="buyprice">{{ student.buyprice }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="tax">{{ student.tax }}</td>
+            <td class="">{{ student.taxbuyprice }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="pauthariprice">{{ student.pauthariprice }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="pautharitax">{{ student.pautharitax }}</td>
+            <td class="">{{ student.pautharitaxprice }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="pujigatprice">{{ student.pujigatprice }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="pujigattax">{{ student.pujigattax }}</td>
+            <td class="">{{ student.pujigattaxprice }}</td>
+       
+            <td class="d-inline">
+              <p class="d-inline">
+              <button onClick="window.location.reload();" class="btn btn-info">Save</button>
                 <form action="{% url 'proapp:remove' student.id %}" method="POST">
                     {% csrf_token %}
                  <input type="submit" name="Remove" value="Remove" class="btn btn-danger">   
                 
               </form>
+            </p>
             </td>
           </tr>
           <!-- This is our clonable table line -->
@@ -96,8 +98,12 @@ border:1px solid dodgerblue;
           <!-- This is our clonable table line -->
          
   {% endfor %}
+
+
+  
   <tr>
             <th class="text-center">Total</th>
+            <th class="text-center"></th>
             <th class="text-center"></th>
             <th class="text-center"></th>
             <th class="text-center"></th>
@@ -107,9 +113,13 @@ border:1px solid dodgerblue;
             <th class="text-center">Rs. {{tprice}}</th>
             <th class="text-center"></th>
             <th class="text-center">Rs. {{tsewaprice}}</th>
+            <th class="text-center">{{tpauthariprice}}</th>
             <th class="text-center"></th>
+            <th class="text-center">{{tpautharitaxprice}}</th>
+            <th class="text-center">{{tpujigat}}</th>
             <th class="text-center"></th>
-            <th class="text-center"></th>
+            <th class="text-center">{{tpujigattaxprice}}</th>
+            <th class="text-center"><a href="">Save in CSV</a></th>
             
           </tr>
         </tbody>
@@ -120,6 +130,116 @@ border:1px solid dodgerblue;
   </div>
 </div>
 <!-- Editable table -->
+
+
+
+
+<div class="card" id="form1" style="display: none;">
+  
+  
+  <div class="card-body">
+    <div id="table" class="table-editable">
+     
+      <table class="table table-bordered table-responsive-md table-striped text-center">
+        <thead>
+          <tr>
+            <th class="text-center">Kharid Date<p>(Unique)</p></th>
+            <th class="text-center">Kharid Bijan</th>
+            <th class="text-center">Aapurti Name</th>
+            <th class="text-center">Aapurti Lekha</th>
+            <th class="text-center">Pauthari Name</th>
+            <th class="text-center">Pauthari Quantity</th>
+            <th class="text-center">Total Buy Price</th>
+            <th class="text-center">Pauthari Total Price</th>
+            <th class="text-center">Buy Price</th>
+            <th class="text-center">Tax</th>
+            <th class="text-center">Tax Buy Price</th>
+            <th class="text-center">Pauthari Price</th>
+            <th class="text-center">Pauthari tax</th>
+            <th class="text-center">Pauthari tax price</th>
+            <th class="text-center">Pujigat Price</th>
+            <th class="text-center">Pujigat Tax</th>
+            <th class="text-center">Pujigat Tax Price</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+
+
+<section class="signup">
+        <!-- <img src="images/signup-bg.jpg" alt=""> -->
+        <div class="container">
+          <div class="signup-content">
+            <form method="POST">
+              {% csrf_token %}
+             
+              <div class="form-group">
+                <div>
+                  {% for message in messages %}
+                  <h5 style="color: red">{{message}}</h5>
+                  {% endfor %}
+                </div>
+                <div>
+                  {% if error %}
+                  <h5 style="color: red">{{error}}</h5>
+                    {% endif %}
+                </div>
+              </div>
+
+              <tr>
+                
+            <td>
+                <select class="form-select" aria-label="Default select example" name="khariddate" id="khariddate">
+                    <option value="Baisakh">Baisakh</option>
+                    <option value="Jestha">Jestha</option>
+                    <option value="Asar">Asar</option>
+                    <option value="Shrawan">Shrawan</option>
+                    <option value="Bhadra">Bhadra</option>
+                    <option value="Asoj">Asoj</option>
+                    <option value="Kartik">Kartik</option>
+                    <option value="Mangsir">Mangsir</option>
+                    <option value="Poush">Poush</option>
+                    <option value="Magh">Magh</option>
+                    <option value="Falgun">Falgun</option>
+                    <option value="Chaitra">Chaitra</option>
+                </select>
+            </td>
+            <td><input type="text"class="form-input"name="kharidbijan" style="width: 100%;" id="kharidbijan"placeholder="@kharidbijan"required/></td>
+            <td><input type="text"class="form-input"name="aapurtiname" style="width: 100%;" id="aapurtiname"placeholder="@aapurtiname"required/></td>
+            <td><input type="text"class="form-input"name="aapurtilekha" style="width: 100%;" id="aapurtilekha"placeholder="@aapurtilekha"required/></td>
+            <td><input type="text"class="form-input"name="pauthariname" style="width: 100%;" id="pauthariname"placeholder="@pauthariname"required/></td>
+            <td><input type="text"class="form-input"name="pauthariquantity" style="width: 100%;" id="pauthariquantity"placeholder="@pauthariquantity"required/></td>
+            <td><input type="text"class="form-input"name="totalbuyprice" style="width: 100%;" id="totalbuyprice"placeholder="@totalbuyprice"required/></td>
+            <td><input type="text"class="form-input"name="pautharitotalprice" style="width: 100%;" id="pautharitotalprice"placeholder="@pautharitotalprice"required/></td>
+            <td><input type="text"class="form-input"name="buyprice" style="width: 100%;" id="buyprice"placeholder="@buyprice"required/></td>
+            <td><input type="text"class="form-input"name="tax" style="width: 100%;" id="tax"placeholder="@tax"required/></td>
+            <td></td>
+            <td><input type="text"class="form-input"name="pauthariprice" style="width: 100%;" id="pauthariprice"placeholder="@pauthariprice"required/></td>
+            <td><input type="text"class="form-input"name="pautharitax" style="width: 100%;" id="pautharitax"placeholder="@pautharitax"required/></td>
+            <td></td>
+            <td><input type="text"class="form-input"name="pujigatprice" style="width: 100%;" id="pujigatprice"placeholder="@pujigatprice"required/></td>
+            <td><input type="text"class="form-input"name="pujigattax" style="width: 100%;" id="pujigattax"placeholder="@pujigattax"required/></td>
+            <td></td>
+            <td><input type="submit"class="form-submit btn btn-primary"name="submit" style="width: 100%;" id="submit"value="ADD"/></td>
+            
+           
+          </tr>
+
+            
+            </form>
+            
+          </div>
+        </div>
+      </section>
+
+         
+        </tbody>
+      </table>
+          
+        
+    </div>
+  </div>
+</div>
 
 
 

@@ -3,4 +3,4 @@ from .models import *
 
 
 admin.site.register(
-    [Vendor, Details])
+    [Vendor, Details, Khariddata])
