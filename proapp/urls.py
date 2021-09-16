@@ -18,7 +18,9 @@ urlpatterns =[
 	path('detailcreate/', views.profile, name='detailcreate'),
 	path('kharidcreate/', views.kharid, name='kharidcreate'),
 	path('update/', views.update, name='update'),
+	path('updated/', views.updated, name='updated'),
 	path('showdata/', views.show_all_data, name='showdata'),
 	path('remove/<int:id>/', views.remove, name='remove'),
+	path('delete/<int:id>/', views.delete, name='delete'),
 	path('savecsv/', views.save_csv, name='savecsv'),
 ]

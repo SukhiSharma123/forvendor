@@ -202,6 +202,91 @@ def update(request):
     student.save()
     return JsonResponse({"success":"Updated"})
 
+
+
+
+def updated(request):
+    id=request.POST.get('id','')
+    type=request.POST.get('type','')
+    value=request.POST.get('value','')
+    student=Khariddata.objects.get(id=id)
+
+    if type=="khariddate":
+    	student.khariddate=value
+
+    if type == "kharidbijan":
+    	student.kharidbijan = value
+
+    if type == "aapurtiname":
+    	student.aapurtiname = value
+
+    if type == "aapurtilekha":
+        student.aapurtilekha = value
+
+    if type == "pauthariname":
+        student.pauthariname = value
+
+    if type == "pauthariquantity":
+        student.pauthariquantity = value
+
+    if type == "totalbuyprice":
+        student.totalbuyprice = value
+
+    if type == "pautharitotalprice":
+        student.pautharitotalprice = value
+
+    if type == "buyprice":
+        student.buyprice = value
+        buyprice = student.buyprice
+        tax = student.tax
+        taxbuyprice = (int(buyprice)*int(tax))/100
+        student.taxbuyprice = taxbuyprice
+
+
+    if type == "tax":
+        student.tax = value
+        tax = student.tax
+        buyprice = student.buyprice
+        taxbuyprice = (int(buyprice)*int(tax))/100
+        student.taxbuyprice = taxbuyprice
+
+    if type == "pauthariprice":
+        student.pauthariprice = value
+        pauthariprice = student.pauthariprice
+        pautharitax = student.pautharitax
+        pautharitaxprice = (int(pauthariprice)*int(pautharitax))/100
+        student.pautharitaxprice = pautharitaxprice
+
+
+    if type == "pautharitax":
+        student.pautharitax = value
+        pautharitax = student.pautharitax
+        pauthariprice = student.pauthariprice
+        pautharitaxprice = (int(pauthariprice)*int(pautharitax))/100
+        student.pautharitaxprice = pautharitaxprice
+
+
+    if type == "pujigatprice":
+        student.pujigatprice = value
+        pujigatprice = student.pujigatprice
+        pujigattax = student.pujigattax
+        pujigattaxprice = (int(pujigatprice)*int(pujigattax))/100
+        student.pujigattaxprice = pujigattaxprice
+
+
+    if type == "pujigattax":
+        student.pujigattax = value
+        pujigattax = student.pujigattax
+        pujigatprice = student.pujigatprice
+        pujigattaxprice = (int(pujigatprice)*int(pujigattax))/100
+        student.pujigattaxprice = pujigattaxprice
+
+
+    student.save()
+    return JsonResponse({"success":"Updated"})
+
+	
+
 	
 
 class ProfileView(TemplateView):
@@ -295,6 +380,14 @@ def remove(request, id):
 		pi = Details.objects.filter(id=id)
 		pi.delete()
 		return HttpResponseRedirect('/detailcreate/')
+
+
+
+def delete(request, id):
+	if request.method=="POST":
+		pi = Khariddata.objects.filter(id=id)
+		pi.delete()
+		return HttpResponseRedirect('/kharidcreate/')
 
 
 def save_csv(request):

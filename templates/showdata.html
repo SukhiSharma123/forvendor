@@ -61,13 +61,13 @@ border:1px solid dodgerblue;
 
             {% for student in students %}
           <tr>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="dateof">{{ student.khariddate }}
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="khariddate">{{ student.khariddate }}
             </td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="bijan">{{ student.kharidbijan }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="kharidname">{{ student.aapurtiname }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="kharidlekha">{{ student.aapurtilekha }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="sewaname">{{ student.pauthariname }}</td>
-            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="totalsell">{{ student.pauthariquantity }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="kharidbijan">{{ student.kharidbijan }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="aapurtiname">{{ student.aapurtiname }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="aapurtilekha">{{ student.aapurtilekha }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="pauthariname">{{ student.pauthariname }}</td>
+            <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="pauthariquantity">{{ student.pauthariquantity }}</td>
             <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="totalbuyprice">{{ student.totalbuyprice }}</td>
             <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="pautharitotalprice">{{ student.pautharitotalprice }}</td>
             <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="buyprice">{{ student.buyprice }}</td>
@@ -83,7 +83,7 @@ border:1px solid dodgerblue;
             <td class="d-inline">
               <p class="d-inline">
               <button onClick="window.location.reload();" class="btn btn-info">Save</button>
-                <form action="{% url 'proapp:remove' student.id %}" method="POST">
+                <form action="{% url 'proapp:delete' student.id %}" method="POST">
                     {% csrf_token %}
                  <input type="submit" name="Remove" value="Remove" class="btn btn-danger">   
                 
@@ -308,7 +308,7 @@ border:1px solid dodgerblue;
                 console.log("hello world")
                 let csrftoken = '{{ csrf_token }}'
                 $.ajax({
-                    url:"http://127.0.0.1:8000/update/",
+                    url:"http://127.0.0.1:8000/updated/",
                     type:"POST",
                     headers:{'X-CSRFToken':csrftoken},
                     data:{id:id,type:type,value:value},
