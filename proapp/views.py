@@ -141,17 +141,19 @@ def kharid(request, id):
       
 
     else:
-    	data = Khariddata.objects.filter(owner_id=request.user.id, kmonth_id=id)
-    	totalsells = sum(data.values_list('totalbuyprice', flat=True))
-    	totalsthaniyakar = sum(data.values_list('pautharitotalprice', flat=True))
-    	totalprice = sum(data.values_list('buyprice', flat=True))
-    	taxbuyprice = sum(data.values_list('taxbuyprice', flat=True))
-    	pauthariprice = sum(data.values_list('pauthariprice', flat=True))
-    	pautharitaxprice = sum(data.values_list('pautharitaxprice', flat=True))
-    	pujigatprice = sum(data.values_list('pujigatprice', flat=True))
-    	pujigattaxprice = sum(data.values_list('pujigattaxprice', flat=True))
+        vendor = Vendor.objects.filter(username=request.user)
+        data = Khariddata.objects.filter(owner_id=request.user.id, kmonth_id=id)
+        totalsells = sum(data.values_list('totalbuyprice', flat=True))
+        totalsthaniyakar = sum(data.values_list('pautharitotalprice', flat=True))
+        totalprice = sum(data.values_list('buyprice', flat=True))
+        taxbuyprice = sum(data.values_list('taxbuyprice', flat=True))
+        pauthariprice = sum(data.values_list('pauthariprice', flat=True))
+        pautharitaxprice = sum(data.values_list('pautharitaxprice', flat=True))
+        pujigatprice = sum(data.values_list('pujigatprice', flat=True))
+        pujigattaxprice = sum(data.values_list('pujigattaxprice', flat=True))
 
-    	return render(request,"baisakh.html", {'datas':data, 'tsell':str(totalsells), 'tsthaniyakar':str(totalsthaniyakar), 'tprice':str(totalprice), 'tsewaprice':str(taxbuyprice), 'tpauthariprice':str(pauthariprice), 'tpautharitaxprice':str(pautharitaxprice), 'tpujigat':str(pujigatprice), 'tpujigattaxprice':str(pujigattaxprice)})
+
+        return render(request,"baisakh.html", {'datas':data, 'ven':vendor, 'tsell':str(totalsells), 'tsthaniyakar':str(totalsthaniyakar), 'tprice':str(totalprice), 'tsewaprice':str(taxbuyprice), 'tpauthariprice':str(pauthariprice), 'tpautharitaxprice':str(pautharitaxprice), 'tpujigat':str(pujigatprice), 'tpujigattaxprice':str(pujigattaxprice)})
 
 
 

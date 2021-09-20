@@ -32,9 +32,9 @@ border:1px solid dodgerblue;
         <div class="text-center">{% for v in ven %}
 
             <p>(नियम २३ को उपनियम (१) को खण्ड  (छ) संग सम्बन्धित ) </p>
-            <span>करदाता दर्ता नं (PAN) : 9098098098        करदाताको नाम: Sparkle Theme PVT         साल    2078      कर अवधि: {{v.month}}</span>
+            <span>करदाता दर्ता नं (PAN) : {{v.pan}}        करदाताको नाम: {{v.kardartaname}}         साल    {{v.year}}   {% endfor %}   कर अवधि: {% for student in datas %}{{student.kmonth.month }}   {% endfor %}</span>
 
-{% endfor %}
+
         </div>
   </div>
   <button type="button" id="formButton" class="btn btn-primary" style="margin-left: 1300px;"><i class="fa fa-plus"></i></button>
