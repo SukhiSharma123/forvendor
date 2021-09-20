@@ -39,7 +39,15 @@ class HomeView(TemplateView):
 	template_name = 'home.html'
 
 
+class MonthView(ListView):
+    template_name = 'month.html'
+    model = Month
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['ven'] = Vendor.objects.filter(username=self.request.user)
+        context['month'] = Month.objects.all()
+        return context
 
 class VendorCreateView(LoginRequiredMixin, CreateView):
 	template_name = "signupform.html"
@@ -61,7 +69,7 @@ class VendorCreateView(LoginRequiredMixin, CreateView):
 		return redirect(self.get_success_url())
 
 	def get_success_url(self):
-		return reverse('proapp:detailcreate')
+		return reverse('proapp:month')
 
 
 
@@ -91,21 +99,25 @@ def profile(request):
       
 
     else:
-    	student=Details.objects.filter(author=request.user)
-    	vendor = Vendor.objects.filter(username=request.user)
-    	totalsells = sum(student.values_list('totalsell', flat=True))
-    	totalsthaniyakar = sum(student.values_list('sthaniyakar', flat=True))
-    	totalprice = sum(student.values_list('price', flat=True))
-    	totalsewaprice = sum(student.values_list('sewaprice', flat=True))
+        month = Month.objects.filter(id=request.get(id))
+        student=Details.objects.filter(author=request.user)
+        vendor = Vendor.objects.filter(username=request.user)
+        totalsells = sum(student.values_list('totalsell', flat=True))
+        totalsthaniyakar = sum(student.values_list('sthaniyakar', flat=True))
+        totalprice = sum(student.values_list('price', flat=True))
+        totalsewaprice = sum(student.values_list('sewaprice', flat=True))
 
-    	return render(request,"detailcreate.html", {'students':student, 'ven':vendor, 'tsell':str(totalsells), 'tsthaniyakar':str(totalsthaniyakar), 'tprice':str(totalprice), 'tsewaprice':str(totalsewaprice)})
-
-
-
+        return render(request,"detailcreate.html", {'students':student, 'ven':vendor, 'tsell':str(totalsells), 'tsthaniyakar':str(totalsthaniyakar), 'tprice':str(totalprice), 'tsewaprice':str(totalsewaprice)})
 
 
-def kharid(request):
+
+
+
+def kharid(request, id):
+    print(id)
     if request.method == 'POST':
+        month_id = request.GET.get('month_id')
+        print(month_id)
         khariddate = request.POST.get('khariddate')
         kharidbijan = request.POST.get('kharidbijan')
         aapurtiname = request.POST.get('aapurtiname')
@@ -125,25 +137,24 @@ def kharid(request):
         pujigattaxprice = (int(pujigatprice)*int(pujigattax))/100
         # detail.instance.author = request.user
         
-        detail = Khariddata(
-                    khariddate=khariddate, kharidbijan=kharidbijan, aapurtiname=aapurtiname, aapurtilekha=aapurtilekha, pauthariname=pauthariname, pauthariquantity=pauthariquantity, totalbuyprice=totalbuyprice, pautharitotalprice=pautharitotalprice, buyprice=buyprice, tax=tax, taxbuyprice=taxbuyprice, pauthariprice=pauthariprice, pautharitax=pautharitax, pautharitaxprice=pautharitaxprice, pujigatprice=pujigatprice, pujigattax=pujigattax, pujigattaxprice=pujigattaxprice, owner=request.user)
+        detail = Khariddata(khariddate=khariddate, kharidbijan=kharidbijan, aapurtiname=aapurtiname, aapurtilekha=aapurtilekha, pauthariname=pauthariname, pauthariquantity=pauthariquantity, totalbuyprice=totalbuyprice, pautharitotalprice=pautharitotalprice, buyprice=buyprice, tax=tax, taxbuyprice=taxbuyprice, pauthariprice=pauthariprice, pautharitax=pautharitax, pautharitaxprice=pautharitaxprice, pujigatprice=pujigatprice, pujigattax=pujigattax, pujigattaxprice=pujigattaxprice, owner=request.user)
+        detail.kmonth = Month.objects.get(id=id)
         detail.save()
-        return HttpResponseRedirect('/kharidcreate/')
+        return HttpResponseRedirect(request.path_info)
       
 
     else:
-    	student=Khariddata.objects.filter(owner=request.user)
-    	vendor = Vendor.objects.filter(username=request.user)
-    	totalsells = sum(student.values_list('totalbuyprice', flat=True))
-    	totalsthaniyakar = sum(student.values_list('pautharitotalprice', flat=True))
-    	totalprice = sum(student.values_list('buyprice', flat=True))
-    	taxbuyprice = sum(student.values_list('taxbuyprice', flat=True))
-    	pauthariprice = sum(student.values_list('pauthariprice', flat=True))
-    	pautharitaxprice = sum(student.values_list('pautharitaxprice', flat=True))
-    	pujigatprice = sum(student.values_list('pujigatprice', flat=True))
-    	pujigattaxprice = sum(student.values_list('pujigattaxprice', flat=True))
+    	data = Khariddata.objects.filter(owner_id=request.user.id, kmonth_id=id)
+    	totalsells = sum(data.values_list('totalbuyprice', flat=True))
+    	totalsthaniyakar = sum(data.values_list('pautharitotalprice', flat=True))
+    	totalprice = sum(data.values_list('buyprice', flat=True))
+    	taxbuyprice = sum(data.values_list('taxbuyprice', flat=True))
+    	pauthariprice = sum(data.values_list('pauthariprice', flat=True))
+    	pautharitaxprice = sum(data.values_list('pautharitaxprice', flat=True))
+    	pujigatprice = sum(data.values_list('pujigatprice', flat=True))
+    	pujigattaxprice = sum(data.values_list('pujigattaxprice', flat=True))
 
-    	return render(request,"showdata.html", {'students':student, 'ven':vendor, 'tsell':str(totalsells), 'tsthaniyakar':str(totalsthaniyakar), 'tprice':str(totalprice), 'tsewaprice':str(taxbuyprice), 'tpauthariprice':str(pauthariprice), 'tpautharitaxprice':str(pautharitaxprice), 'tpujigat':str(pujigatprice), 'tpujigattaxprice':str(pujigattaxprice)})
+    	return render(request,"baisakh.html", {'datas':data, 'tsell':str(totalsells), 'tsthaniyakar':str(totalsthaniyakar), 'tprice':str(totalprice), 'tsewaprice':str(taxbuyprice), 'tpauthariprice':str(pauthariprice), 'tpautharitaxprice':str(pautharitaxprice), 'tpujigat':str(pujigatprice), 'tpujigattaxprice':str(pujigattaxprice)})
 
 
 
@@ -155,7 +166,7 @@ def show_all_data(request):
     totalprice = sum(student.values_list('price', flat=True))
     totalsewaprice = sum(student.values_list('sewaprice', flat=True))
 
-    return render(request,"showdata.html", {'students':student, 'ven':vendor, 'tsell':str(totalsells), 'tsthaniyakar':str(totalsthaniyakar), 'tprice':str(totalprice), 'tsewaprice':str(totalsewaprice)})
+    return render(request,"baisakh.html", {'students':student, 'ven':vendor, 'tsell':str(totalsells), 'tsthaniyakar':str(totalsthaniyakar), 'tprice':str(totalprice), 'tsewaprice':str(totalsewaprice)})
 
 
 def update(request):
@@ -331,7 +342,7 @@ def registerPage(request):
 
 def loginPage(request):
 	if request.user.is_authenticated:
-		return redirect('proapp:detailcreate')
+		return redirect('proapp:month')
 	else:
 		if request.method == 'POST':
 			username = request.POST.get('username')
@@ -341,7 +352,7 @@ def loginPage(request):
 
 			if user is not None:
 				login(request, user)
-				return redirect('proapp:detailcreate')
+				return redirect('proapp:month')
 			else:
 				messages.info(request, 'Username OR password is incorrect')
 

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Kharid Khata
+{% endblock title %}
+
+{% block custom_css %}
+<style>
+.bg_blue{
+padding:10px;
+border-radius:10px;
+box-shadow:3px 3px 3px grey;
+background:dodgerblue;
+color:#fff;
+}
+.custom-block{
+padding:15px;
+border:1px solid dodgerblue;
+}
+</style>
+{% endblock custom_css %}
+
+{% block bodydata %}
+
+{% if ven %}
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">MONTH</th>
+      <th scope="col">BIKRIKARTA</th>
+      <th scope="col">KHARIDKARTA</th>
+    </tr>
+  </thead>
+  {% for m in month %}
+  <tbody>
+    <tr>
+      <th scope="row">{{m.id}}</th>
+      <td>{{m.month}}</td>
+      <td><a href="{% url 'proapp:detailcreate' %}">BIKRI</a></td>
+      <td><a href="{% url 'proapp:kharidcreate' m.id %}">KHARID</a></td>
+    </tr>
+    
+  </tbody>
+{% endfor %}
+</table>
+{% else %}
+<h2>Complete your Detail here first<a href="{% url 'proapp:blogcreate' %}"> Click here</a></h2>
+
+{% endif %}
+{% endblock %}

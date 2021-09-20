@@ -17,9 +17,14 @@ class Vendor(models.Model):
 		return str(self.user.id)
 
 
+MONTHS = (("BAISAKH", "baisakh"), ("JESTHA", "jestha"), ("ASAR", "asar"), ("SHRAWAN", "shrawan"), ("BHADRA", "bhadra"), ("ASOJ", "asoj"), ("KARTIK", "kartik"), ("MANGSIR", "mangsir"), ("POUSH", "poush"), ("MAGH", "magh"), ("FALGUN", "falgun"), ("CHAITRA", "chaitra"))
+
+class Month(models.Model):
+	month = models.CharField(max_length=20, choices=MONTHS, unique=True)
 
 class Details(models.Model):
-	dateof = models.CharField(max_length=20, unique=True)
+	bmonth = models.ForeignKey(Month, on_delete=models.CASCADE, verbose_name= "bmonth")
+	dateof = models.CharField(max_length=20)
 	bijan = models.CharField(max_length=30)
 	kharidname = models.CharField(max_length=200)
 	kharidlekha = models.CharField(max_length=30)
@@ -39,6 +44,7 @@ class Details(models.Model):
 
 
 class Khariddata(models.Model):
+	kmonth = models.ForeignKey(Month, on_delete=models.CASCADE, verbose_name="kharid")
 	khariddate = models.CharField(max_length=20)
 	kharidbijan = models.CharField(max_length=20)
 	aapurtiname = models.CharField(max_length=200)

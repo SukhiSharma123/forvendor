@@ -1,4 +1,6 @@
+{% extends 'base.html' %}
 {% load static %}
+{% block bodydata %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,7 +38,6 @@
           <div class="signup-content">
             <form method="POST">
               {% csrf_token %}
-              <h2 class="form-title">User Detail</h2>
               <div class="form-group">
                 <div>
                   {% for message in messages %}
@@ -49,112 +50,43 @@
                     {% endif %}
                 </div>
               </div>
-
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-input"
-                  name="address"
-                  id="address"
-                  placeholder="@address"
-                required/>
-              </div>
-
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-input"
-                  name="pan"
-                  id="pan"
-                  placeholder="@pan"
-                required/>
-              </div>
-
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-input"
-                  name="kardartaname"
-                  id="kardartaname"
-                  placeholder="@kardartaname"
-                required/>
-              </div>
-
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-input"
-                  name="year"
-                  id="year"
-                  placeholder="@year"
-                required/>
-              </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-input"
-                  name="duration"
-                  id="duration"
-                  placeholder="@duration"
-                required/>
-              </div>
-              
-              
-              <div class="form-group">
-                <input
-                  type="submit"
-                  name="submit"
-                  id="submit"
-                  class="form-submit"
-                  value="Sign Up"
-                />
-              </div>
+                                <h3 class="register-heading">Detail of Vendor</h3>
+                                <div class="row register-form">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Address *" id="address" name="address" value="" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="pan *" id="pan" name="pan" value="" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="kardartaname *" id="kardartaname" name="kardartaname" value="" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control"  placeholder="Year *" id="year" name="year" value="" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control"  placeholder="Duration *" id="duration" name="duration" value="" />
+                                        </div>
+                                        <input type="submit" class="btnRegister"  value="Register"/>
+                                    </div>
+                                    
+                                        
+                                        
+                                        
+                                    </div>
+                                </div>
+                            </div>
             </form>
             
           </div>
         </div>
       </section>
     </div>
-<div>
-{% if prob %}
-    <table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Username</th>
-      <th scope="col">Email</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  {% for problem in prob %}
-  <tbody>
-    <tr>
-      <th scope="row">{{ problem.id }}</th>
-      <td>{{ problem.name }}</td>
-      <td>{{ problem.username }}</td>
-      <td>{{ problem.email }}</td>
-      <td>
-        <a href="" class="btn btn-primary btn-sm">Edit</a>
-        <form action="{% url 'roh:deletedata' problem.id %}" method="POST" class="d-inline">
-          {% csrf_token %}
-          <input type="submit" name="Delete" class="btn btn-danger btn-sm" value="Delete">
-        </form>
-      </td>
-    </tr>
-    
-  </tbody>
-{% endfor %}
-</table>
-{% else %}
-
-<h4 class="text-center alert alert-warning">No Records </h4>
-
-{% endif %}
-
-</div>
     <!-- JS -->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
   </body>
 </html>
+
+{% endblock %}

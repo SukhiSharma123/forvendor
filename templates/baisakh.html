@@ -22,13 +22,21 @@ border:1px solid dodgerblue;
 
 {% block bodydata %}
 
-{% if ven %}
+
+{% if request.user.vendor %}
 
 
 <div class="card">
-  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
-    Kharid Khata
-  </h3>
+  <div class="companyinfo">
+        <h2 class="text-center">खरिद खाता</h2>
+        <div class="text-center">{% for v in ven %}
+
+            <p>(नियम २३ को उपनियम (१) को खण्ड  (छ) संग सम्बन्धित ) </p>
+            <span>करदाता दर्ता नं (PAN) : 9098098098        करदाताको नाम: Sparkle Theme PVT         साल    2078      कर अवधि: {{v.month}}</span>
+
+{% endfor %}
+        </div>
+  </div>
   <button type="button" id="formButton" class="btn btn-primary" style="margin-left: 1300px;"><i class="fa fa-plus"></i></button>
   <div class="card-body">
     <div id="table" class="table-editable">
@@ -36,8 +44,8 @@ border:1px solid dodgerblue;
       <table class="table table-bordered table-responsive-md table-striped text-center">
         <thead>
           <tr>
-            <th class="text-center">Kharid Date<p>(Unique)</p></th>
-            <th class="text-center">Kharid Bijan</th>
+            <th class="text-center">मिति</th>
+            <th class="text-center">बीजक नं./ प्रज्ञापनपत्र नं.</th>
             <th class="text-center">Aapurti Name</th>
             <th class="text-center">Aapurti Lekha</th>
             <th class="text-center">Pauthari Name</th>
@@ -59,8 +67,9 @@ border:1px solid dodgerblue;
         <tbody>
                 
 
-            {% for student in students %}
+            {% for student in datas %}
           <tr>
+            
             <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="khariddate">{{ student.khariddate }}
             </td>
             <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="kharidbijan">{{ student.kharidbijan }}</td>
@@ -188,22 +197,8 @@ border:1px solid dodgerblue;
 
               <tr>
                 
-            <td>
-                <select class="form-select" aria-label="Default select example" name="khariddate" id="khariddate">
-                    <option value="Baisakh">Baisakh</option>
-                    <option value="Jestha">Jestha</option>
-                    <option value="Asar">Asar</option>
-                    <option value="Shrawan">Shrawan</option>
-                    <option value="Bhadra">Bhadra</option>
-                    <option value="Asoj">Asoj</option>
-                    <option value="Kartik">Kartik</option>
-                    <option value="Mangsir">Mangsir</option>
-                    <option value="Poush">Poush</option>
-                    <option value="Magh">Magh</option>
-                    <option value="Falgun">Falgun</option>
-                    <option value="Chaitra">Chaitra</option>
-                </select>
-            </td>
+            
+            <td><input type="text"class="form-input"name="khariddate" style="width: 100%;" id="khariddate"placeholder="@khariddate"required/></td>
             <td><input type="text"class="form-input"name="kharidbijan" style="width: 100%;" id="kharidbijan"placeholder="@kharidbijan"required/></td>
             <td><input type="text"class="form-input"name="aapurtiname" style="width: 100%;" id="aapurtiname"placeholder="@aapurtiname"required/></td>
             <td><input type="text"class="form-input"name="aapurtilekha" style="width: 100%;" id="aapurtilekha"placeholder="@aapurtilekha"required/></td>
