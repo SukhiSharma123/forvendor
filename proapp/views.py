@@ -112,7 +112,6 @@ def profile(request, id):
 
 
 def kharid(request, id):
-    print(id)
     if request.method == 'POST':
         month_id = request.GET.get('month_id')
         khariddate = request.POST.get('khariddate')
