@@ -22,9 +22,6 @@ border:1px solid dodgerblue;
 
 {% block bodydata %}
 
-{% if ven %}
-
-
 <div class="card">
   <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
     Bikri Khata
@@ -36,7 +33,7 @@ border:1px solid dodgerblue;
       <table class="table table-bordered table-responsive-md table-striped text-center">
         <thead>
           <tr>
-            <th class="text-center">Date Of<p>(Unique)</p></th>
+            <th class="text-center">Date Of</th>
             <th class="text-center">Bijan</th>
             <th class="text-center">Kharid Name</th>
             <th class="text-center">Kharid Lekha</th>
@@ -55,7 +52,7 @@ border:1px solid dodgerblue;
         <tbody>
                 
 
-            {% for student in students %}
+            {% for student in bdatas %}
           <tr>
             <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="dateof">{{ student.dateof }}
             </td>
@@ -131,7 +128,7 @@ border:1px solid dodgerblue;
       <table class="table table-bordered table-responsive-md table-striped text-center">
         <thead>
           <tr>
-            <th class="text-center">Date Of<p>(Unique)</p></th>
+            <th class="text-center">Date Of</th>
             <th class="text-center">Bijan</th>
             <th class="text-center">Kharid Name</th>
             <th class="text-center">Kharid Lekha</th>
@@ -171,23 +168,8 @@ border:1px solid dodgerblue;
               </div>
 
               <tr>
-                
-            <td>
-                <select class="form-select" aria-label="Default select example" name="dateof" id="dateof">
-                    <option value="Baisakh">Baisakh</option>
-                    <option value="Jestha">Jestha</option>
-                    <option value="Asar">Asar</option>
-                    <option value="Shrawan">Shrawan</option>
-                    <option value="Bhadra">Bhadra</option>
-                    <option value="Asoj">Asoj</option>
-                    <option value="Kartik">Kartik</option>
-                    <option value="Mangsir">Mangsir</option>
-                    <option value="Poush">Poush</option>
-                    <option value="Magh">Magh</option>
-                    <option value="Falgun">Falgun</option>
-                    <option value="Chaitra">Chaitra</option>
-                </select>
-            </td>
+           <td><input type="text"class="form-input"name="dateof" style="width: 100%;" id="dateof"placeholder="@dateof"required/></td>     
+           
             <td><input type="text"class="form-input"name="bijan" style="width: 100%;" id="bijan"placeholder="@bijan"required/></td>
             <td><input type="text"class="form-input"name="kharidname" style="width: 100%;" id="kharidname"placeholder="@kharidname"required/></td>
             <td><input type="text"class="form-input"name="kharidlekha" style="width: 100%;" id="kharidlekha"placeholder="@kharidlekha"required/></td>
@@ -238,10 +220,7 @@ border:1px solid dodgerblue;
             </div>
         </div>
 </div>
-{% else %}
-<h2>Complete your Detail here first<a href="{% url 'proapp:blogcreate' %}"> Click here</a></h2>
 
-{% endif %}
 {% endblock bodydata %}
 
 {% block custom_js %}

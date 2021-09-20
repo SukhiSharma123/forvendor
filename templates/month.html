@@ -39,7 +39,7 @@ border:1px solid dodgerblue;
     <tr>
       <th scope="row">{{m.id}}</th>
       <td>{{m.month}}</td>
-      <td><a href="{% url 'proapp:detailcreate' %}">BIKRI</a></td>
+      <td><a href="{% url 'proapp:detailcreate' m.id %}">BIKRI</a></td>
       <td><a href="{% url 'proapp:kharidcreate' m.id %}">KHARID</a></td>
     </tr>
     

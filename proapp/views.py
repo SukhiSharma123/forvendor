@@ -74,10 +74,9 @@ class VendorCreateView(LoginRequiredMixin, CreateView):
 
 
 
-def profile(request):
+def profile(request, id):
     if request.method == 'POST':
         dateof = request.POST.get('dateof')
-        print(dateof)
         bijan = request.POST.get('bijan')
         kharidname = request.POST.get('kharidname')
         kharidlekha = request.POST.get('kharidlekha')
@@ -94,20 +93,19 @@ def profile(request):
         
         detail = Details(
                     dateof=dateof, bijan=bijan, kharidname=kharidname, kharidlekha=kharidlekha, sewaname=sewaname, totalsell=totalsell, sthaniyakar=sthaniyakar, price=price, tax=tax, sewaprice=sewaprice, country=country, nikasipatra=nikasipatra, nikasidate=nikasidate, author=request.user)
+        detail.bmonth = Month.objects.get(id=id)
         detail.save()
-        return HttpResponseRedirect('/detailcreate/')
+        return HttpResponseRedirect(request.path_info)
       
 
     else:
-        month = Month.objects.filter(id=request.get(id))
-        student=Details.objects.filter(author=request.user)
-        vendor = Vendor.objects.filter(username=request.user)
-        totalsells = sum(student.values_list('totalsell', flat=True))
-        totalsthaniyakar = sum(student.values_list('sthaniyakar', flat=True))
-        totalprice = sum(student.values_list('price', flat=True))
-        totalsewaprice = sum(student.values_list('sewaprice', flat=True))
+        bdata=Details.objects.filter(author_id=request.user.id, bmonth_id=id)
+        totalsells = sum(bdata.values_list('totalsell', flat=True))
+        totalsthaniyakar = sum(bdata.values_list('sthaniyakar', flat=True))
+        totalprice = sum(bdata.values_list('price', flat=True))
+        totalsewaprice = sum(bdata.values_list('sewaprice', flat=True))
 
-        return render(request,"detailcreate.html", {'students':student, 'ven':vendor, 'tsell':str(totalsells), 'tsthaniyakar':str(totalsthaniyakar), 'tprice':str(totalprice), 'tsewaprice':str(totalsewaprice)})
+        return render(request,"detailcreate.html", {'bdatas':bdata, 'tsell':str(totalsells), 'tsthaniyakar':str(totalsthaniyakar), 'tprice':str(totalprice), 'tsewaprice':str(totalsewaprice)})
 
 
 
@@ -117,7 +115,6 @@ def kharid(request, id):
     print(id)
     if request.method == 'POST':
         month_id = request.GET.get('month_id')
-        print(month_id)
         khariddate = request.POST.get('khariddate')
         kharidbijan = request.POST.get('kharidbijan')
         aapurtiname = request.POST.get('aapurtiname')
@@ -157,16 +154,6 @@ def kharid(request, id):
     	return render(request,"baisakh.html", {'datas':data, 'tsell':str(totalsells), 'tsthaniyakar':str(totalsthaniyakar), 'tprice':str(totalprice), 'tsewaprice':str(taxbuyprice), 'tpauthariprice':str(pauthariprice), 'tpautharitaxprice':str(pautharitaxprice), 'tpujigat':str(pujigatprice), 'tpujigattaxprice':str(pujigattaxprice)})
 
 
-
-def show_all_data(request):
-    student=Details.objects.filter(author=request.user)
-    vendor = Vendor.objects.filter(username=request.user)
-    totalsells = sum(student.values_list('totalsell', flat=True))
-    totalsthaniyakar = sum(student.values_list('sthaniyakar', flat=True))
-    totalprice = sum(student.values_list('price', flat=True))
-    totalsewaprice = sum(student.values_list('sewaprice', flat=True))
-
-    return render(request,"baisakh.html", {'students':student, 'ven':vendor, 'tsell':str(totalsells), 'tsthaniyakar':str(totalsthaniyakar), 'tprice':str(totalprice), 'tsewaprice':str(totalsewaprice)})
 
 
 def update(request):
@@ -403,7 +390,7 @@ def remove(request, id):
 	if request.method=="POST":
 		pi = Details.objects.filter(id=id)
 		pi.delete()
-		return HttpResponseRedirect('/detailcreate/')
+		return render(request, 'baisakh.html')
 
 
 
@@ -411,7 +398,7 @@ def delete(request, id):
 	if request.method=="POST":
 		pi = Khariddata.objects.filter(id=id)
 		pi.delete()
-		return HttpResponseRedirect('/kharidcreate/')
+		return render(request, 'detailcreate.html')
 
 
 def save_csv(request):
