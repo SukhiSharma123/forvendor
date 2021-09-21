@@ -128,8 +128,9 @@ border:1px solid dodgerblue;
             <th class="text-center">{{tpujigat}}</th>
             <th class="text-center"></th>
             <th class="text-center">{{tpujigattaxprice}}</th>
-            <th class="text-center"><a href="{% url 'proapp:savepdf' %}">Save in PDF</a></th>
-            
+            {% for stu in datas %}
+            <th class="text-center"><a href="{% url 'proapp:savepdf' stu.kmonth.id %}">Save in PDF</a></th>
+            {% endfor %}
           </tr>
         </tbody>
       </table>

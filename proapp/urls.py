@@ -23,5 +23,5 @@ urlpatterns =[
 	path('remove/<int:id>/', views.remove, name='remove'),
 	path('delete/<int:id>/', views.delete, name='delete'),
 	path('savecsv/', views.save_csv, name='savecsv'),
-	path('savepdf/', GeneratePdf.as_view(), name='savepdf'),
+	path('savepdf/<int:pk>/', GeneratePdf.as_view(), name='savepdf'),
 ]
