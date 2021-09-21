@@ -114,9 +114,9 @@ border:1px solid dodgerblue;
             <th class="text-center"></th>
             <th class="text-center"></th>
             <th class="text-center"></th>
-            <th class="text-center"><a href="{% url 'proapp:savecsv' %}">Save in CSV</a></th>
+            <th class="text-center"><a href="{% url 'proapp:savecsv' %}">Save in CSV</a>
             {% for stu in bdatas %}
-            <th class="text-center"><a href="{% url 'proapp:savep' stu.bmonth.id %}">Save in PDF</a></th>
+            <a href="{% url 'proapp:savep' stu.bmonth.id %}">Save in PDF</a></th>
             {% endfor %}
             
           </tr>
