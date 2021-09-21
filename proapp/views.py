@@ -99,13 +99,14 @@ def profile(request, id):
       
 
     else:
+        vendor = Vendor.objects.filter(username=request.user)
         bdata=Details.objects.filter(author_id=request.user.id, bmonth_id=id)
         totalsells = sum(bdata.values_list('totalsell', flat=True))
         totalsthaniyakar = sum(bdata.values_list('sthaniyakar', flat=True))
         totalprice = sum(bdata.values_list('price', flat=True))
         totalsewaprice = sum(bdata.values_list('sewaprice', flat=True))
 
-        return render(request,"detailcreate.html", {'bdatas':bdata, 'tsell':str(totalsells), 'tsthaniyakar':str(totalsthaniyakar), 'tprice':str(totalprice), 'tsewaprice':str(totalsewaprice)})
+        return render(request,"detailcreate.html", {'bdatas':bdata, 'ven':vendor, 'tsell':str(totalsells), 'tsthaniyakar':str(totalsthaniyakar), 'tprice':str(totalprice), 'tsewaprice':str(totalsewaprice)})
 
 
 

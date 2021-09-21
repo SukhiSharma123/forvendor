@@ -46,21 +46,21 @@ border:1px solid dodgerblue;
           <tr>
             <th class="text-center">मिति</th>
             <th class="text-center">बीजक नं./ प्रज्ञापनपत्र नं.</th>
-            <th class="text-center">Aapurti Name</th>
-            <th class="text-center">Aapurti Lekha</th>
-            <th class="text-center">Pauthari Name</th>
-            <th class="text-center">Pauthari Quantity</th>
-            <th class="text-center">Total Buy Price</th>
-            <th class="text-center">Pauthari Total Price</th>
-            <th class="text-center">Buy Price</th>
-            <th class="text-center">Tax</th>
-            <th class="text-center">Tax Buy Price</th>
-            <th class="text-center">Pauthari Price</th>
-            <th class="text-center">Pauthari Tax</th>
-            <th class="text-center">Pauthari Tax Price</th>
-            <th class="text-center">Pujigat Price</th>
-            <th class="text-center">Pujigat Tax</th>
-            <th class="text-center">Pujigat Tax Price</th>
+            <th class="text-center">आपूर्तिकर्ताको नाम</th>
+            <th class="text-center">आपूर्तिकर्ताको स्थायी लेखा नम्बर</th>
+            <th class="text-center">खरिद/पैठारी गरिएका वस्तु वा सेवाको विवरण</th>
+            <th class="text-center">खरिद/पैठारी गरिएका वस्तु वा सेवाको परिमाण</th>
+            <th class="text-center">जम्मा खरिद मूल्य (रु)</th>
+            <th class="text-center">कर छुट हुने वस्तु वा सेवाको खरिद / पैठारी मूल्य (रु)</th>
+            <th class="text-center">करयोग्य खरिद (पूंजीगत बाहेक) मूल्य (रु)</th>
+            <th class="text-center">करयोग्य खरिद (पूंजीगत बाहेक) कर (रु)</th>
+            <th class="text-center">करयोग्य खरिद (पूंजीगत बाहेक) जम्मा (रु)</th>
+            <th class="text-center">करयोग्य पैठारी (पूंजीगत बाहेक) मूल्य (रु)</th>
+            <th class="text-center">करयोग्य पैठारी (पूंजीगत बाहेक) कर (रु)</th>
+            <th class="text-center">करयोग्य पैठारी (पूंजीगत बाहेक) जम्मा (रु)</th>
+            <th class="text-center">पूंजीगत करयोग्य खरिद / पैठारी मूल्य (रु)</th>
+            <th class="text-center">पूंजीगत करयोग्य खरिद / पैठारी कर (रु)</th>
+            <th class="text-center">पूंजीगत करयोग्य खरिद / पैठारी जम्मा (रु)</th>
             
           </tr>
         </thead>
@@ -111,23 +111,23 @@ border:1px solid dodgerblue;
 
   
   <tr>
-            <th class="text-center">Total</th>
+            <th class="text-center">जम्मा</th>
             <th class="text-center"></th>
             <th class="text-center"></th>
             <th class="text-center"></th>
             <th class="text-center"></th>
             <th class="text-center"></th>
-            <th class="text-center">Rs. {{tsell}}</th>
-            <th class="text-center">Rs. {{tsthaniyakar}}</th>
-            <th class="text-center">Rs. {{tprice}}</th>
+            <th class="text-center">रु {{tsell}}</th>
+            <th class="text-center">रु {{tsthaniyakar}}</th>
+            <th class="text-center">रु {{tprice}}</th>
             <th class="text-center"></th>
-            <th class="text-center">Rs. {{tsewaprice}}</th>
-            <th class="text-center">{{tpauthariprice}}</th>
+            <th class="text-center">रु {{tsewaprice}}</th>
+            <th class="text-center">रु {{tpauthariprice}}</th>
             <th class="text-center"></th>
-            <th class="text-center">{{tpautharitaxprice}}</th>
-            <th class="text-center">{{tpujigat}}</th>
+            <th class="text-center">रु {{tpautharitaxprice}}</th>
+            <th class="text-center">रु {{tpujigat}}</th>
             <th class="text-center"></th>
-            <th class="text-center">{{tpujigattaxprice}}</th>
+            <th class="text-center">रु {{tpujigattaxprice}}</th>
             {% for stu in datas %}
             <th class="text-center"><a href="{% url 'proapp:savepdf' stu.kmonth.id %}">Save in PDF</a></th>
             {% endfor %}
