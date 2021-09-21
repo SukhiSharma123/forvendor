@@ -32,7 +32,7 @@ border:1px solid dodgerblue;
         <div class="text-center">{% for v in ven %}
 
             <p>(नियम २३ को उपनियम (१) को खण्ड  (छ) संग सम्बन्धित ) </p>
-            <span>करदाता दर्ता नं (PAN) : {{v.pan}}        करदाताको नाम: {{v.kardartaname}}         साल    {{v.year}}   {% endfor %}   कर अवधि: {% for student in datas %}{{student.kmonth.month }}   {% endfor %}</span>
+            <span>करदाता दर्ता नं (PAN) : {{v.pan}}        करदाताको नाम: {{v.kardartaname}}         साल    {{v.year}}   {% endfor %}   कर अवधि:  {% for student in datas %}{% if forloop.counter <= 1 %}{{student.kmonth.month }} {% endif %}   {% endfor %}</span>
 
 
         </div>
@@ -128,8 +128,8 @@ border:1px solid dodgerblue;
             <th class="text-center">रु {{tpujigat}}</th>
             <th class="text-center"></th>
             <th class="text-center">रु {{tpujigattaxprice}}</th>
-            {% for stu in datas %}
-            <th class="text-center"><a href="{% url 'proapp:savepdf' stu.kmonth.id %}">Save in PDF</a></th>
+            {% for a in abc %}
+            <th class="text-center"><a href="{% url 'proapp:savepdf' a %}">Save in PDF</a></th>
             {% endfor %}
           </tr>
         </tbody>

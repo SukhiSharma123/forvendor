@@ -29,7 +29,7 @@ border:1px solid dodgerblue;
           <div class="text-center">{% for v in ven %}
 
             <p>(नियम २३ को उपनियम (१) को खण्ड  (छ) संग सम्बन्धित ) </p>
-            <span>करदाता दर्ता नं (PAN) : {{v.pan}}        करदाताको नाम: {{v.kardartaname}}         साल    {{v.year}}   {% endfor %}   कर अवधि: {% for student in bdatas %}{{student.bmonth.month }}   {% endfor %}</span>
+            <span>करदाता दर्ता नं (PAN) : {{v.pan}}        करदाताको नाम: {{v.kardartaname}}         साल    {{v.year}}   {% endfor %}   कर अवधि: {% for student in bdatas %}{% if forloop.counter <= 1 %}{{student.bmonth.month }} {% endif %}  {% endfor %}</span>
 
 
         </div>
@@ -115,8 +115,9 @@ border:1px solid dodgerblue;
             <th class="text-center"></th>
             <th class="text-center"></th>
             <th class="text-center"><a href="{% url 'proapp:savecsv' %}">Save in CSV</a>
-            {% for stu in bdatas %}
-            <a href="{% url 'proapp:savep' stu.bmonth.id %}">Save in PDF</a></th>
+            {% for a in abc %}
+            <a href="{% url 'proapp:savep' a %}">Save in PDF</a>
+            </th>
             {% endfor %}
             
           </tr>
@@ -146,6 +147,7 @@ border:1px solid dodgerblue;
             <th class="text-center">Kharid Name</th>
             <th class="text-center">Kharid Lekha</th>
             <th class="text-center">Sewa Name</th>
+            <th class="text-center">Pariman</th>
             <th class="text-center">Total Sell</th>
             <th class="text-center">Sthaniyakar</th>
             <th class="text-center">Price</th>
@@ -187,6 +189,7 @@ border:1px solid dodgerblue;
             <td><input type="text"class="form-input"name="kharidname" style="width: 100%;" id="kharidname"placeholder="@kharidname"required/></td>
             <td><input type="text"class="form-input"name="kharidlekha" style="width: 100%;" id="kharidlekha"placeholder="@kharidlekha"required/></td>
             <td><input type="text"class="form-input"name="sewaname" style="width: 100%;" id="sewaname"placeholder="@sewaname"required/></td>
+            <td><input type="text"class="form-input"name="pariman" style="width: 100%;" id="pariman"placeholder="@pariman"required/></td>
             <td><input type="text"class="form-input"name="totalsell" style="width: 100%;" id="totalsell"placeholder="@totalsell"required/></td>
             <td><input type="text"class="form-input"name="sthaniyakar" style="width: 100%;" id="sthaniyakar"placeholder="@sthaniyakar"required/></td>
             <td><input type="text"class="form-input"name="price" style="width: 100%;" id="price"placeholder="@price"required/></td>

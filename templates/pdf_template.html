@@ -19,10 +19,10 @@
   <div><h1 style="text-align: center;margin-bottom: 0px;">KHARID KHATA</h1><h3 style="text-align: center;margin-top: 0px;">(Niyam 23 ko upniyam (1) ko khand (6) sanga Sambandhit)</h3></div>
   <div>
     {% for v in ven %}
-    <p style="text-align: center;"><b>Kardarta no.(PAN): {{v.pan}}   </b><b>Kardarta ko naam: {{v.kardartaname}}</b><b>  Saal: {{v.year}}</b>{% endfor %}<b> Yabadhi: {% for student in context %}{{student.kmonth.month }}   {% endfor %}</b></p>
+    <p style="text-align: center;"><b>Kardarta no.(PAN): {{v.pan}}   </b><b>Kardarta ko naam: {{v.kardartaname}}</b><b>  Saal: {{v.year}}</b>{% endfor %}<b> Yabadhi: {% for student in context %}{% if forloop.counter <= 1 %}{{student.kmonth.month }} {% endif %}   {% endfor %}</b></p>
     
   </div>
-  {% for c in context %}
+  
    <div class="row">
     <div class="col-12 col-md-12">
       <!-- <div><p style="font-size: 10px;"><b>Bijak/Pragyapan PAtra no. </b><b style="margin-left: 10px;">Bijak/Pragyapan PAtra no. </b><b>Bijak/Pragyapan PAtra no. </b><b>Bijak/Pragyapan PAtra no. </b></p></div> -->
@@ -40,12 +40,16 @@
       <th scope="col">Pauthari Total</th>
       <th scope="col">Buy Price</th>
       <th scope="col">Tax</th>
+      <th scope="col"></th>
       <th scope="col">Pauthari Price</th>
       <th scope="col">Pauthari tax</th>
+      <th scope="col"></th>
       <th scope="col">Pujigat Price</th>
       <th scope="col">Pujigat Tax</th>
+      <th scope="col"></th>
     </tr>
   </thead>
+    {% for c in context %}
   <tbody>
     <tr>
       <th>{{c.khariddate}}</th>
@@ -58,18 +62,21 @@
       <td>{{c.pautharitotalprice}}</td>
       <th>{{c.buyprice}}</th>
       <td>{{c.tax}}</td>
+      <td>{{c.taxbuyprice}}</td>
       <td>{{c.pauthariprice}}</td>
       <td>{{c.pautharitax}}</td>
+      <td>{{c.pautharitaxprice}}</td>
       <th>{{c.pujigatprice}}</th>
       <td>{{c.pujigattax}}</td>
+      <td>{{c.pujigattaxprice}}</td>
     </tr>
   </tbody>
+  {% endfor %}
 </table>
 
     </div>
    
   </div>
-  {% endfor %}
 
       <table class="table">
   <thead>

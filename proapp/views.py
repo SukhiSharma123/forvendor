@@ -102,12 +102,13 @@ def profile(request, id):
     else:
         vendor = Vendor.objects.filter(username=request.user)
         bdata=Details.objects.filter(author_id=request.user.id, bmonth_id=id)
+        abc = Details.objects.filter(author_id=request.user.id, bmonth_id=id).values_list('bmonth_id', flat=True).first()
         totalsells = sum(bdata.values_list('totalsell', flat=True))
         totalsthaniyakar = sum(bdata.values_list('sthaniyakar', flat=True))
         totalprice = sum(bdata.values_list('price', flat=True))
         totalsewaprice = sum(bdata.values_list('sewaprice', flat=True))
 
-        return render(request,"detailcreate.html", {'bdatas':bdata, 'ven':vendor, 'tsell':str(totalsells), 'tsthaniyakar':str(totalsthaniyakar), 'tprice':str(totalprice), 'tsewaprice':str(totalsewaprice)})
+        return render(request,"detailcreate.html", {'bdatas':bdata, 'ven':vendor, 'tsell':str(totalsells), 'tsthaniyakar':str(totalsthaniyakar), 'tprice':str(totalprice), 'tsewaprice':str(totalsewaprice), 'abc':str(abc)})
 
 
 
@@ -144,6 +145,7 @@ def kharid(request, id):
     else:
         vendor = Vendor.objects.filter(username=request.user)
         data = Khariddata.objects.filter(owner_id=request.user.id, kmonth_id=id)
+        abc = Khariddata.objects.filter(owner_id=request.user.id, kmonth_id=id).values_list('kmonth_id', flat=True).first()
         totalsells = sum(data.values_list('totalbuyprice', flat=True))
         totalsthaniyakar = sum(data.values_list('pautharitotalprice', flat=True))
         totalprice = sum(data.values_list('buyprice', flat=True))
@@ -154,7 +156,7 @@ def kharid(request, id):
         pujigattaxprice = sum(data.values_list('pujigattaxprice', flat=True))
 
 
-        return render(request,"baisakh.html", {'datas':data, 'ven':vendor, 'tsell':str(totalsells), 'tsthaniyakar':str(totalsthaniyakar), 'tprice':str(totalprice), 'tsewaprice':str(taxbuyprice), 'tpauthariprice':str(pauthariprice), 'tpautharitaxprice':str(pautharitaxprice), 'tpujigat':str(pujigatprice), 'tpujigattaxprice':str(pujigattaxprice)})
+        return render(request,"baisakh.html", {'datas':data, 'ven':vendor, 'tsell':str(totalsells), 'tsthaniyakar':str(totalsthaniyakar), 'tprice':str(totalprice), 'tsewaprice':str(taxbuyprice), 'tpauthariprice':str(pauthariprice), 'tpautharitaxprice':str(pautharitaxprice), 'tpujigat':str(pujigatprice), 'tpujigattaxprice':str(pujigattaxprice), 'abc':str(abc)})
 
 
 

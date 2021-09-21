@@ -20,10 +20,9 @@
   <div>
     {% for v in ven %}
     <p style="text-align: center;"><b>Kardarta no.(PAN): {{v.pan}}   </b><b>Kardarta ko naam: {{v.kardartaname}}</b><b>  Saal: {{v.year}}</b>    {% endfor %}
-      <b> Yabadhi: {% for student in context %}{{student.bmonth.month }}   {% endfor %}</b></p>
+      <b> Yabadhi: {% for student in context %}{% if forloop.counter <= 1 %}{{student.bmonth.month }} {% endif %}   {% endfor %}</b></p>
 
   </div>
-  {% for c in context %}
    <div class="row">
     <div class="col-12 col-md-12">
       <!-- <div><p style="font-size: 10px;"><b>Bijak/Pragyapan PAtra no. </b><b style="margin-left: 10px;">Bijak/Pragyapan PAtra no. </b><b>Bijak/Pragyapan PAtra no. </b><b>Bijak/Pragyapan PAtra no. </b></p></div> -->
@@ -47,6 +46,7 @@
       <th scope="col">Nikasidate</th>
     </tr>
   </thead>
+    {% for c in context %}
   <tbody>
     <tr>
       <th>{{c.dateof}}</th>
@@ -65,12 +65,13 @@
       <td>{{c.nikasidate}}</td>
     </tr>
   </tbody>
+  {% endfor %}
 </table>
 
     </div>
    
   </div>
-  {% endfor %}
+  
 
       <table class="table">
   <thead>
