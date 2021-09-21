@@ -29,6 +29,7 @@ class Details(models.Model):
 	kharidname = models.CharField(max_length=200)
 	kharidlekha = models.CharField(max_length=30)
 	sewaname = models.CharField(max_length=200)
+	pariman = models.IntegerField()
 	totalsell = models.IntegerField()
 	sthaniyakar = models.IntegerField()
 	price = models.IntegerField()

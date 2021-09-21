@@ -81,6 +81,7 @@ def profile(request, id):
         kharidname = request.POST.get('kharidname')
         kharidlekha = request.POST.get('kharidlekha')
         sewaname = request.POST.get('sewaname')
+        pariman = request.POST.get('pariman')
         totalsell =request.POST.get('totalsell')
         sthaniyakar = request.POST.get('sthaniyakar')
         price = request.POST.get('price')
@@ -92,7 +93,7 @@ def profile(request, id):
         # detail.instance.author = request.user
         
         detail = Details(
-                    dateof=dateof, bijan=bijan, kharidname=kharidname, kharidlekha=kharidlekha, sewaname=sewaname, totalsell=totalsell, sthaniyakar=sthaniyakar, price=price, tax=tax, sewaprice=sewaprice, country=country, nikasipatra=nikasipatra, nikasidate=nikasidate, author=request.user)
+                    dateof=dateof, bijan=bijan, kharidname=kharidname, kharidlekha=kharidlekha, sewaname=sewaname, pariman=pariman, totalsell=totalsell, sthaniyakar=sthaniyakar, price=price, tax=tax, sewaprice=sewaprice, country=country, nikasipatra=nikasipatra, nikasidate=nikasidate, author=request.user)
         detail.bmonth = Month.objects.get(id=id)
         detail.save()
         return HttpResponseRedirect(request.path_info)
@@ -178,6 +179,9 @@ def update(request):
 
     if type == "sewaname":
         student.sewaname = value
+
+    if type == "pariman":
+        student.pariman = value
 
     if type == "totalsell":
         student.totalsell = value
