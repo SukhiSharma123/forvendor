@@ -19,8 +19,9 @@
   <div><h1 style="text-align: center;margin-bottom: 0px;">KHARID KHATA</h1><h3 style="text-align: center;margin-top: 0px;">(Niyam 23 ko upniyam (1) ko khand (6) sanga Sambandhit)</h3></div>
   <div>
     {% for v in ven %}
-    <p style="text-align: center;"><b>Kardarta no.(PAN): {{v.pan}}   </b><b>Kardarta ko naam: {{v.kardartaname}}</b><b>  Saal: {{v.year}}</b>{% endfor %}<b> Yabadhi: {% for student in context %}{{student.kmonth.month }}   {% endfor %}</b></p>
-    
+    <p style="text-align: center;"><b>Kardarta no.(PAN): {{v.pan}}   </b><b>Kardarta ko naam: {{v.kardartaname}}</b><b>  Saal: {{v.year}}</b>    {% endfor %}
+      <b> Yabadhi: {% for student in context %}{{student.bmonth.month }}   {% endfor %}</b></p>
+
   </div>
   {% for c in context %}
    <div class="row">
@@ -32,36 +33,36 @@
     <tr>
       <th scope="col">MITI</th>
       <th scope="col">Bijak</th>
-      <th scope="col">Aapurtikarta ko Naam</th>
-      <th scope="col">Aapurtikarta ko Sthayi no.</th>
-      <th scope="col">Pauthari sewa</th>
+      <th scope="col">Kharidname</th>
+      <th scope="col">kharidlekha</th>
+      <th scope="col">sewaname</th>
       <th scope="col">Quantity</th>
-      <th scope="col">Total price</th>
-      <th scope="col">Pauthari Total</th>
-      <th scope="col">Buy Price</th>
+      <th scope="col">Total Sell</th>
+      <th scope="col">Sthaniyakar</th>
+      <th scope="col">Price</th>
       <th scope="col">Tax</th>
-      <th scope="col">Pauthari Price</th>
-      <th scope="col">Pauthari tax</th>
-      <th scope="col">Pujigat Price</th>
-      <th scope="col">Pujigat Tax</th>
+      <th scope="col">Sewa Price</th>
+      <th scope="col">Country</th>
+      <th scope="col">Nikasipatra</th>
+      <th scope="col">Nikasidate</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>{{c.khariddate}}</th>
-      <td>{{c.kharidbijan}}</td>
-      <td>{{c.aapurtiname}}</td>
-      <td>{{c.aapurtilekha}}</td>
-      <th>{{c.pauthariname}}</th>
-      <td>{{c.pauthariquantity}}</td>
-      <td>{{c.totalbuyprice}}</td>
-      <td>{{c.pautharitotalprice}}</td>
-      <th>{{c.buyprice}}</th>
+      <th>{{c.dateof}}</th>
+      <td>{{c.bijak}}</td>
+      <td>{{c.kharidname}}</td>
+      <td>{{c.kharidlekha}}</td>
+      <th>{{c.sewaname}}</th>
+      <td>{{c.pariman}}</td>
+      <td>{{c.totalsell}}</td>
+      <td>{{c.sthaniyakar}}</td>
+      <th>{{c.price}}</th>
       <td>{{c.tax}}</td>
-      <td>{{c.pauthariprice}}</td>
-      <td>{{c.pautharitax}}</td>
-      <th>{{c.pujigatprice}}</th>
-      <td>{{c.pujigattax}}</td>
+      <td>{{c.sewaprice}}</td>
+      <td>{{c.country}}</td>
+      <th>{{c.nikasipatra}}</th>
+      <td>{{c.nikasidate}}</td>
     </tr>
   </tbody>
 </table>

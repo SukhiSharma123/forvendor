@@ -418,9 +418,9 @@ def save_csv(request):
 		writer.writerow(['', '', 'Pan: ', inf.pan,'Kardarta Name: ',inf.kardartaname,'Year: ',inf.year,'Duration: ',inf.duration])
 
 	writer.writerow(['','','','Bijak','','','','|Karyogya Bikri','','|Nikasi','','',''])
-	writer.writerow(['dateof','bijan','kharidname','kharidlekha','sewaname','totalsell','sthaniyakar','price','tax','sewaprice','country','nikasipatra','nikasidate'])
+	writer.writerow(['dateof','bijan','kharidname','kharidlekha','sewaname','pariman','totalsell','sthaniyakar','price','tax','sewaprice','country','nikasipatra','nikasidate'])
 	for rec in record:
-		writer.writerow([rec.dateof, rec.bijan, rec.kharidname, rec.kharidlekha, rec.sewaname, rec.totalsell, rec.sthaniyakar, rec.price, rec.tax, rec.sewaprice, rec.country, rec.nikasipatra, rec.nikasidate])
+		writer.writerow([rec.dateof, rec.bijan, rec.kharidname, rec.kharidlekha, rec.sewaname, rec.pariman, rec.totalsell, rec.sthaniyakar, rec.price, rec.tax, rec.sewaprice, rec.country, rec.nikasipatra, rec.nikasidate])
 
 	return response
 
@@ -440,6 +440,19 @@ class GeneratePdf(View):
         pujigatprice = sum(context.values_list('pujigatprice', flat=True))
         pujigattaxprice = sum(context.values_list('pujigattaxprice', flat=True))
         pdf = render_to_pdf('pdf_template.html', {'context': context, 'ven':vendor, 'tsell':str(totalsells), 'tsthaniyakar':str(totalsthaniyakar), 'tprice':str(totalprice), 'tsewaprice':str(taxbuyprice), 'tpauthariprice':str(pauthariprice), 'tpautharitaxprice':str(pautharitaxprice), 'tpujigat':str(pujigatprice), 'tpujigattaxprice':str(pujigattaxprice)})
+        return HttpResponse(pdf, content_type='application/pdf')
+
+
+
+class GenerateP(View):
+     def get(self, request, pk):
+        context = Details.objects.filter(author=request.user, bmonth_id=pk)
+        vendor = Vendor.objects.filter(username=request.user)
+        totalsells = sum(context.values_list('totalsell', flat=True))
+        totalsthaniyakar = sum(context.values_list('sthaniyakar', flat=True))
+        totalprice = sum(context.values_list('price', flat=True))
+        taxbuyprice = sum(context.values_list('sewaprice', flat=True))
+        pdf = render_to_pdf('pdf_temp.html', {'context': context, 'ven':vendor, 'tsell':str(totalsells), 'tsthaniyakar':str(totalsthaniyakar), 'tprice':str(totalprice), 'tsewaprice':str(taxbuyprice)})
         return HttpResponse(pdf, content_type='application/pdf')
 
 
