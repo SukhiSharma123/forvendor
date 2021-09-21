@@ -115,8 +115,10 @@ border:1px solid dodgerblue;
             <th class="text-center"></th>
             <th class="text-center"></th>
             <th class="text-center"><a href="{% url 'proapp:savecsv' %}">Save in CSV</a>
-            {% for a in abc %}
-            <a href="{% url 'proapp:savep' a %}">Save in PDF</a>
+            {% for stu in bdatas %}
+            {% if forloop.counter <= 1 %}
+            <a href="{% url 'proapp:savep' stu.bmonth.id %}">Save in PDF</a>
+            {% endif %}
             </th>
             {% endfor %}
             

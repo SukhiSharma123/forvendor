@@ -128,8 +128,9 @@ border:1px solid dodgerblue;
             <th class="text-center">रु {{tpujigat}}</th>
             <th class="text-center"></th>
             <th class="text-center">रु {{tpujigattaxprice}}</th>
-            {% for a in abc %}
-            <th class="text-center"><a href="{% url 'proapp:savepdf' a %}">Save in PDF</a></th>
+            {% for student in datas %}{% if forloop.counter <= 1 %}
+            <th class="text-center"><a href="{% url 'proapp:savepdf' student.kmonth.id %}">Save in PDF</a></th>
+            {% endif %}
             {% endfor %}
           </tr>
         </tbody>
