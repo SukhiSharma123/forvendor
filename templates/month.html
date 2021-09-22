@@ -25,13 +25,13 @@ border:1px solid dodgerblue;
 {% if ven %}
 
 
-<table class="table">
+<table class="table" style="margin-left:20px;">
   <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">MONTH</th>
-      <th scope="col">BIKRIKARTA</th>
-      <th scope="col">KHARIDKARTA</th>
+    <tr> 
+      <th scope="col">स.न.</th>
+      <th scope="col">महिना</th>
+      <th scope="col">बिक्रिकार्ता</th>
+      <th scope="col">खरिदकार्ता</th>
     </tr>
   </thead>
   {% for m in month %}
@@ -39,8 +39,8 @@ border:1px solid dodgerblue;
     <tr>
       <th scope="row">{{m.id}}</th>
       <td>{{m.month}}</td>
-      <td><a href="{% url 'proapp:detailcreate' m.id %}">BIKRI</a></td>
-      <td><a href="{% url 'proapp:kharidcreate' m.id %}">KHARID</a></td>
+      <td><a href="{% url 'proapp:detailcreate' m.id %}">बिक्री</a></td>
+      <td><a href="{% url 'proapp:kharidcreate' m.id %}">खरिद</a></td>
     </tr>
     
   </tbody>
