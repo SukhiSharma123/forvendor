@@ -33,7 +33,7 @@ border:1px solid dodgerblue;
 
 
         </div>
-  <button type="button" id="formButton" class="btn btn-primary" style="position: relative;"><i class="fa fa-plus"></i></button>
+  <button type="button" id="formButton" class="btn btn-primary" style="margin-left: 1300px;"><i class="fa fa-plus"></i></button>
   <div class="card-body">
     <div id="table" class="table-editable">
      
@@ -114,10 +114,10 @@ border:1px solid dodgerblue;
             <th class="text-center"></th>
             <th class="text-center"></th>
             <th class="text-center"></th>
-            <th class="text-center"><a href="{% url 'proapp:savecsv' %}">Save in CSV</a>
+            <th class="text-center"><a href="{% url 'proapp:savecsv' %}">CSV</a>
             {% for stu in bdatas %}
             {% if forloop.counter <= 1 %}
-            <a href="{% url 'proapp:savep' stu.bmonth.id %}">Save in PDF</a>
+            <a href="{% url 'proapp:savep' stu.bmonth.id %}">PDF</a>
             {% endif %}
             </th>
             {% endfor %}
@@ -144,20 +144,20 @@ border:1px solid dodgerblue;
       <table class="table table-bordered table-responsive-md table-striped text-center">
         <thead>
           <tr>
-            <th class="text-center">Date Of</th>
-            <th class="text-center">Bijan</th>
-            <th class="text-center">Kharid Name</th>
-            <th class="text-center">Kharid Lekha</th>
-            <th class="text-center">Sewa Name</th>
-            <th class="text-center">Pariman</th>
-            <th class="text-center">Total Sell</th>
-            <th class="text-center">Sthaniyakar</th>
-            <th class="text-center">Price</th>
-            <th class="text-center">Tax</th>
-            <th class="text-center">Sewa Price</th>
-            <th class="text-center">Country</th>
-            <th class="text-center">Nikasi Patra</th>
-            <th class="text-center">Nikasi Date</th>
+            <th class="text-center">मिति</th>
+            <th class="text-center">बीजक नम्बर</th>
+            <th class="text-center">खरिदकर्ताको नाम</th>
+            <th class="text-center">खरिदकर्ताको स्थायी लेखा नम्बर</th>
+            <th class="text-center">वस्तु वा सेवाको नाम</th>
+            <th class="text-center">वस्तु वा सेवाको परिमाण</th>
+            <th class="text-center">जम्मा बिक्री / निकासी (रु)</th>
+            <th class="text-center">स्थानीय कर छुटको बिक्री  मूल्य (रु)</th>
+            <th class="text-center">मूल्य (रु)</th>
+            <th class="text-center">कर (रु)</th>
+            <th class="text-center">निकासी गरेको वस्तु वा सेवाको मूल्य (रु)</th>
+            <th class="text-center">निकासी गरेको देश</th>
+            <th class="text-center">निकासी प्रज्ञापनपत्र नम्बर</th>
+            <th class="text-center">निकासी प्रज्ञापनपत्र मिति</th>
             
           </tr>
         </thead>
@@ -185,7 +185,7 @@ border:1px solid dodgerblue;
               </div>
 
               <tr>
-           <td><input type="text"class="form-input"name="dateof" style="width: 100%;" id="dateof"placeholder="@dateof"required/></td>     
+           <td><input type="date"class="form-input"name="dateof" style="width: 100%;" id="dateof"placeholder="@dateof"required/></td>     
            
             <td><input type="text"class="form-input"name="bijan" style="width: 100%;" id="bijan"placeholder="@bijan"required/></td>
             <td><input type="text"class="form-input"name="kharidname" style="width: 100%;" id="kharidname"placeholder="@kharidname"required/></td>
