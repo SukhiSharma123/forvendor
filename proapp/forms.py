@@ -24,3 +24,8 @@ class CreateUserForm(UserCreationForm):
 		model = User
 		fields = ['username', 'email', 'password1', 'password2']
 
+class VendorUpdateForm(forms.ModelForm):
+	class Meta:
+		model = Vendor
+		fields= ['address','pan','kardartaname','year','duration']
+

@@ -1,5 +1,5 @@
 
-        <div class="col-md-5" style="margin-left: 10px;">
+        <div class="col-md-5" style="text-align:center;">
             <!-- <br> -->
             {% for pi in posts %}
             {% ifequal pi.username request.user.username %}
@@ -9,8 +9,8 @@
                 <p>Kardarta's Name : {{pi.kardartaname}}</p>
                 <p>Year : {{pi.year}}</p>
                 <p>Duration : {{pi.duration}}</p>
-            <a href="{% url 'proapp:changepass' %}">Change Password</a>
-            
+            <a href="{% url 'proapp:changepass' %}" class="btn btn-primary">Change Password</a>
+            <a href="{% url 'proapp:infoupdate' pi.id %}" class="btn btn-primary">Update Info</a>
             {% else %}
 
             {% endifequal %}

@@ -14,6 +14,7 @@ urlpatterns =[
 	path('profile/', ProfileView.as_view(), name="profile"),
 	path('month/', MonthView.as_view(), name="month"),
 	path('blog/create',VendorCreateView.as_view(),name='blogcreate'),
+	path('info/<int:pk>/update/',VendorUpdateView.as_view(),name='infoupdate'),
 	path('changepass/', views.changepPass, name='changepass'),
 	# path('detailcreate/', DetailCreateView.as_view(), name='detailcreate'),
 	path('detailcreate/<int:id>', views.profile, name='detailcreate'),

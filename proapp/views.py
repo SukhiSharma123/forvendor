@@ -375,7 +375,13 @@ class BlogCreateForm(CreateView):
 	def get_success_url(self):
 		return reverse('proapp:home')
 
-
+class VendorUpdateView(UpdateView):
+    template_name = 'infoupdate.html'
+    model= Vendor
+    form_class = VendorUpdateForm
+    
+    def get_success_url(self):
+        return reverse('proapp:home')
 
 
 def changepPass(request):
@@ -398,7 +404,7 @@ def remove(request, id):
 	if request.method=="POST":
 		pi = Details.objects.filter(id=id)
 		pi.delete()
-		return render(request, 'baisakh.html')
+		return render(request, 'month.html')
 
 
 
@@ -406,7 +412,7 @@ def delete(request, id):
 	if request.method=="POST":
 		pi = Khariddata.objects.filter(id=id)
 		pi.delete()
-		return render(request, 'detailcreate.html')
+		return render(request, 'month.html')
 
 
 def save_csv(request):
