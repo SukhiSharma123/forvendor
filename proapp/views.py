@@ -219,7 +219,7 @@ def update(request):
         student.nikasidate = value
 
     student.save()
-    return JsonResponse({"success":"Updated"})
+    return redirect(request.META['HTTP_REFERER'])
 
 
 
@@ -404,7 +404,7 @@ def remove(request, id):
 	if request.method=="POST":
 		pi = Details.objects.filter(id=id)
 		pi.delete()
-		return render(request, 'month.html')
+		return redirect(request.META['HTTP_REFERER'])
 
 
 
@@ -412,7 +412,7 @@ def delete(request, id):
 	if request.method=="POST":
 		pi = Khariddata.objects.filter(id=id)
 		pi.delete()
-		return render(request, 'month.html')
+		return redirect(request.META['HTTP_REFERER'])
 
 
 def save_csv(request):

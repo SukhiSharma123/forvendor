@@ -289,6 +289,7 @@ border:1px solid dodgerblue;
                     type:"POST",
                     headers:{'X-CSRFToken':csrftoken},
                     data:{id:id,type:type,value:value},
+      
                 })
                 .done(function(response){
                     console.log(response);
