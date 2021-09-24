@@ -78,15 +78,13 @@ border:1px solid dodgerblue;
             <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="nikasipatra">{{ student.nikasipatra }}</td>
             <td class="editable" contenteditable="true" data-id="{{ student.id }}" data-type="nikasidate">{{ student.nikasidate }}</td>
        
-            <td class="d-inline">
-              <p class="d-inline">
+            <td>
               <button onClick="window.location.reload();" class="btn btn-info">Save</button>
                 <form action="{% url 'proapp:remove' student.id %}" method="POST">
                     {% csrf_token %}
                  <input type="submit" name="Remove" value="Remove" class="btn btn-danger">   
                 
               </form>
-            </p>
             </td>
           </tr>
           <!-- This is our clonable table line -->
